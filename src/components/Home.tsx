@@ -16,17 +16,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home: React.FC = () => {
     const textRef = useRef<HTMLDivElement>(null);
-    const videoRef = useRef<HTMLVideoElement>(null);
+    const [currentVideoIndex, setCurrentVideoIndex] = React.useState(0);
+    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+    const videos = [
+        "/Homepage/v1.mp4",
+        "/Homepage/v2.mp4",
+        "/Homepage/v3.mp4",
+        "/Homepage/v4.mp4"
+    ];
+
+    const handleVideoEnd = (index: number) => {
+        if (index === currentVideoIndex) {
+            setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+        }
+    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Initial video entrance animation
-            gsap.fromTo(videoRef.current,
-                { scale: 1.1, opacity: 0 },
-                { scale: 1, opacity: 1, duration: 2, ease: "power2.out" }
-            );
-
-            // Text animation with ScrollTrigger for Hero text enter & enterBack
+            // Hero text animation
             gsap.fromTo(textRef.current,
                 { y: 50, opacity: 0 },
                 {
@@ -36,8 +44,8 @@ const Home: React.FC = () => {
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: textRef.current,
-                        start: "top 100%",   // Start when text top hits bottom of screen
-                        end: "bottom 15%",   // End when text bottom is 15% from top of screen
+                        start: "top 100%",
+                        end: "bottom 15%",
                         toggleActions: "play reverse play reverse",
                     }
                 }
@@ -53,7 +61,7 @@ const Home: React.FC = () => {
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: ".about-text",
-                        start: "top 85%", // Trigger right before it enters fully
+                        start: "top 85%",
                         toggleActions: "play reverse play reverse"
                     }
                 }
@@ -68,7 +76,7 @@ const Home: React.FC = () => {
                     delay: 0.3,
                     ease: "power3.out",
                     scrollTrigger: {
-                        trigger: ".about-text", // Use the text as the trigger for smoother timing
+                        trigger: ".about-text",
                         start: "top 80%",
                         toggleActions: "play reverse play reverse"
                     }
@@ -79,23 +87,40 @@ const Home: React.FC = () => {
         return () => ctx.revert();
     }, []);
 
+    // Manage play/pause state for all videos
+    useEffect(() => {
+        videoRefs.current.forEach((video, index) => {
+            if (!video) return;
+
+            if (index === currentVideoIndex) {
+                video.currentTime = 0;
+                video.play().catch(error => console.error("Video playback failed:", error));
+            } else {
+                video.pause();
+            }
+        });
+    }, [currentVideoIndex]);
+
     return (
         <main data-scroll-container className="bg-[#111618]">
             <section id="top" className="relative w-full h-screen overflow-hidden flex items-end pb-24 px-8 md:px-16" data-scroll-section>
 
-                {/* Background Video */}
+                {/* Background Videos (Stacked) */}
                 <div className="absolute inset-0 w-full h-full z-0">
                     <div className="absolute inset-0 bg-black/40 z-10" /> {/* Dark Overlay */}
-                    <video
-                        ref={videoRef}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
-                        // Using a royalty-free abstract tech video as a placeholder
-                        src="https://assets.mixkit.co/videos/preview/mixkit-set-of-plateaus-seen-from-the-space-in-a-timeline-41182-large.mp4"
-                    />
+                    {videos.map((src, index) => (
+                        <video
+                            key={src}
+                            ref={el => { videoRefs.current[index] = el; }}
+                            muted
+                            playsInline
+                            preload="auto"
+                            onEnded={() => handleVideoEnd(index)}
+                            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentVideoIndex ? 'opacity-60' : 'opacity-0'
+                                }`}
+                            src={src}
+                        />
+                    ))}
                 </div>
 
                 {/* Hero Content */}

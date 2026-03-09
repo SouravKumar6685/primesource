@@ -77,18 +77,22 @@ const ContactCTA: React.FC = () => {
                 </div>
             </div>
 
-            {/* Bottom Images Grid */}
-            <div ref={imagesRef} className="grid grid-cols-2 lg:grid-cols-4 w-full h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
-                {bottomImages.map((src, index) => (
-                    <div key={index} className="relative group overflow-hidden h-full">
-                        <img
-                            src={src}
-                            alt={`Work aspect ${index + 1}`}
-                            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            {/* Bottom Images Grid with Split Background */}
+            <div className="w-full" style={{ background: 'linear-gradient(to bottom, #ffffff 50%, #111618 50%)' }}>
+                <div className="max-w-[1400px] mx-auto px-8 md:px-16">
+                    <div ref={imagesRef} className="grid grid-cols-2 lg:grid-cols-4 w-full h-[250px] md:h-[350px] lg:h-[450px] overflow-hidden">
+                        {bottomImages.map((src, index) => (
+                            <div key={index} className="relative group overflow-hidden h-full">
+                                <img
+                                    src={src}
+                                    alt={`Work aspect ${index + 1}`}
+                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
             </div>
         </section>
     );

@@ -7,6 +7,7 @@ const Navbar: React.FC = () => {
     const navLinks = [
         { name: 'Services', id: 'services' },
         { name: 'Insights', id: 'insights' },
+        { name: 'Resources', id: 'insights' }, // Pointing to insights for now or a dedicated section
         { name: 'Industries', id: 'industries' },
         { name: 'Work', id: 'work' },
         { name: 'About', id: 'about' },
@@ -57,14 +58,35 @@ const Navbar: React.FC = () => {
             {/* Navigation Links */}
             <div className="hidden lg:flex items-center gap-10 text-[13px] font-semibold tracking-wide">
                 {navLinks.map((link) => (
-                    <a
-                        key={link.name}
-                        href={`#${link.id}`}
-                        onClick={(e) => handleNavClick(e, link.id)}
-                        className="hover:text-gray-300 transition-colors uppercase"
-                    >
-                        {link.name}
-                    </a>
+                    <div key={link.name} className="relative group">
+                        <a
+                            href={`#${link.id}`}
+                            onClick={(e) => handleNavClick(e, link.id)}
+                            className="hover:text-gray-300 transition-colors uppercase py-2"
+                        >
+                            {link.name}
+                        </a>
+
+                        {/* Resources Dropdown */}
+                        {link.name === 'Resources' && (
+                            <div className="absolute top-full left-0 mt-2 w-48 bg-[#111618] border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                <div className="py-2">
+                                    <button
+                                        onClick={(e) => handleNavClick(e, 'insights')}
+                                        className="w-full text-left px-6 py-3 hover:bg-white/5 transition-colors uppercase text-[11px] tracking-widest text-gray-300 hover:text-white"
+                                    >
+                                        Blog
+                                    </button>
+                                    <button
+                                        onClick={(e) => handleNavClick(e, 'work')}
+                                        className="w-full text-left px-6 py-3 hover:bg-white/5 transition-colors uppercase text-[11px] tracking-widest text-gray-300 hover:text-white"
+                                    >
+                                        Case Studies
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 ))}
 
                 {/* Contact Button */}

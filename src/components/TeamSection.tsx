@@ -8,13 +8,26 @@ const TeamSection: React.FC = () => {
     const containerRef = useRef<HTMLElement>(null);
     const imageContainerRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
-    const bgImageRef = useRef<HTMLImageElement>(null);
+    const [currentVideoIndex, setCurrentVideoIndex] = React.useState(0);
+    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
+    const teamVideos = [
+        "/Team/v1.mp4",
+        "/Team/v2.mp4"
+    ];
+
+    const handleVideoEnd = (index: number) => {
+        if (index === currentVideoIndex) {
+            setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % teamVideos.length);
+        }
+    };
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Parallax effect for the background image
-            if (bgImageRef.current) {
-                gsap.fromTo(bgImageRef.current,
+            // Parallax effect for the video container
+            const allVideos = videoRefs.current.filter(v => v !== null);
+            if (allVideos.length > 0) {
+                gsap.fromTo(allVideos,
                     { yPercent: -10 },
                     {
                         yPercent: 10,
@@ -71,6 +84,20 @@ const TeamSection: React.FC = () => {
         return () => ctx.revert();
     }, []);
 
+    // Manage play/pause state for team videos
+    useEffect(() => {
+        videoRefs.current.forEach((video, index) => {
+            if (!video) return;
+
+            if (index === currentVideoIndex) {
+                video.currentTime = 0;
+                video.play().catch(error => console.error("Team video playback failed:", error));
+            } else {
+                video.pause();
+            }
+        });
+    }, [currentVideoIndex]);
+
     return (
         <section ref={containerRef} className="relative w-full py-16 md:py-24" data-scroll-section>
             {/* Split Background Effect: Black top half, White bottom half */}
@@ -84,14 +111,22 @@ const TeamSection: React.FC = () => {
                     ref={imageContainerRef}
                     className="relative w-full h-[600px] md:h-[750px] lg:h-[850px] rounded-3xl md:rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden shadow-2xl"
                 >
-                    {/* Background Image with Parallax */}
-                    <img
-                        ref={bgImageRef}
-                        // Using a placeholder construction/team image to match the machinery vibe in reference
-                        src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2000&auto=format&fit=crop"
-                        alt="Our Engineering Team"
-                        className="absolute inset-0 w-full h-[120%] object-cover object-center -top-[10%]"
-                    />
+                    {/* Background Videos (Stacked for Gapless) */}
+                    <div className="absolute inset-0 w-full h-full">
+                        {teamVideos.map((src, index) => (
+                            <video
+                                key={src}
+                                ref={el => { videoRefs.current[index] = el; }}
+                                muted
+                                playsInline
+                                preload="auto"
+                                onEnded={() => handleVideoEnd(index)}
+                                className={`absolute inset-0 w-full h-[120%] object-cover object-center -top-[10%] transition-opacity duration-1000 ${index === currentVideoIndex ? 'opacity-100' : 'opacity-0'
+                                    }`}
+                                src={src}
+                            />
+                        ))}
+                    </div>
 
                     {/* Dark Overlay for Text Readable Contrast */}
                     <div className="absolute inset-0 bg-black/50 pointer-events-none"></div>
