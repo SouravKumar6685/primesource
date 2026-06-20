@@ -1,63 +1,29 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
-interface ServiceItem {
+export interface ServiceItem {
     title: string;
     icon: React.ReactNode;
 }
 
-const services: ServiceItem[] = [
+export const services: ServiceItem[] = [
     {
-        title: "Replatforming",
+        title: "AI/ML",
         icon: (
             <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="12" y="20" width="32" height="20" stroke="#999" strokeWidth="1.5" />
-                <path d="M28 40V46M24 46H32" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M22 36C22 30 25 24 32 20C40 18 48 22 48 30C52 32 54 36 50 40H22Z" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M24 30L30 24L36 30M30 24V34" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <rect x="22" y="24" width="20" height="16" rx="2" stroke="#999" strokeWidth="1.5" />
+                <circle cx="28" cy="30" r="2" fill="#ea2b4f" />
+                <circle cx="36" cy="30" r="2" fill="#ea2b4f" />
+                <path d="M28 36H36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M32 24V18" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="32" cy="16" r="2" stroke="#999" strokeWidth="1.5" />
+                <path d="M22 32H18M46 32H42" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M26 40V44M38 40V44" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
         )
     },
     {
-        title: "DevOps",
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="14" y="22" width="28" height="18" stroke="#999" strokeWidth="1.5" />
-                <rect x="16" y="24" width="24" height="14" stroke="#ea2b4f" strokeWidth="1.5" />
-                <path d="M28 40V46M24 46H32" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="42" cy="20" r="6" stroke="#999" strokeWidth="1.5" fill="white" />
-                <path d="M42 22C40.5 22 39 23 39 24.5M42 16C40.5 16 39 17 39 18.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M23 32L19 28L23 24M33 32L37 28L33 24M29 24L27 32" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-        )
-    },
-    {
-        title: "Containerisation",
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="22" y="28" width="20" height="14" stroke="#ea2b4f" strokeWidth="1.5" />
-                <path d="M25 31V39M29 31V39M33 31V39M37 31V39" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M22 28L32 20L42 28" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="32" cy="18" r="2" stroke="#999" strokeWidth="1.5" />
-                <path d="M32 16V10M32 10C34 10 36 12 36 14" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-        )
-    },
-    {
-        title: "Agile",
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="32" cy="30" r="10" stroke="#ea2b4f" strokeWidth="1.5" />
-                <path d="M32 26V30H36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M30 16C23 16 18 22 18 29.5C18 36 22 41 28 43" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="4 4" />
-                <path d="M36 17C42 19 46 25 45 32C44 38 39 43 32 44" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M30 16L34 12M30 16L34 20" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M16 44H44L40 40" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-        )
-    },
-    {
-        title: "Cloud Native",
+        title: "Cloud",
         icon: (
             <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M42 40H20C15 40 12 36 12 31C12 26 15 23 19 23C21 16 29 14 34 19C38 18 42 21 43 25C47 26 49 30 48 34C48 38 46 40 42 40Z" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -65,35 +31,6 @@ const services: ServiceItem[] = [
                 <rect x="36" y="16" width="6" height="6" stroke="#999" strokeWidth="1.5" />
                 <rect x="44" y="32" width="6" height="6" stroke="#999" strokeWidth="1.5" />
                 <path d="M42 22V24M44 30V32" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-        )
-    },
-    {
-        title: "Micro Services",
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="28" cy="30" r="14" stroke="#ea2b4f" strokeWidth="1.5" />
-                <circle cx="38" cy="18" r="4" stroke="#999" strokeWidth="1.5" />
-                <circle cx="46" cy="28" r="5" stroke="#999" strokeWidth="1.5" />
-                <circle cx="44" cy="40" r="3" stroke="#999" strokeWidth="1.5" />
-                <circle cx="20" cy="20" r="3" stroke="#999" strokeWidth="1.5" />
-                <circle cx="18" cy="32" r="2" stroke="#999" strokeWidth="1.5" />
-                <circle cx="34" cy="34" r="6" stroke="#999" strokeWidth="1.5" />
-                <path d="M22 22L35 19M40 21L44 24M45 33L44 37M37 39L32 42M20 32L28 34M23 21L30 30M36 21L34 28M42 29L39 31" stroke="#999" strokeWidth="1" strokeDasharray="2 2" />
-            </svg>
-        )
-    },
-    {
-        title: "Internet of Things",
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="32" y="18" width="16" height="12" stroke="#999" strokeWidth="1.5" />
-                <rect x="18" y="22" width="6" height="10" stroke="#999" strokeWidth="1.5" />
-                <path d="M18 20H24V22H18V20ZM18 32H24V34H18V32Z" fill="#999" />
-                <path d="M24 28H32M32 28V30M32 28V26" stroke="#999" strokeWidth="1.5" strokeDasharray="2 2" />
-                <path d="M30 40C32.5 38 37.5 38 40 40" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M27 44C31 41 39 41 43 44" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M34 36C34.5 35 35.5 35 36 36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
         )
     },
@@ -110,6 +47,75 @@ const services: ServiceItem[] = [
         )
     },
     {
+        title: "Web Development",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 22H48C50 22 52 24 52 26V42C52 44 50 46 48 46H16C14 46 12 44 12 42V26C12 24 14 22 16 22Z" stroke="#999" strokeWidth="1.5" />
+                <path d="M12 28H52" stroke="#999" strokeWidth="1.5" />
+                <circle cx="18" cy="25" r="1.5" fill="#ea2b4f" />
+                <circle cx="23" cy="25" r="1.5" fill="#999" />
+                <circle cx="28" cy="25" r="1.5" fill="#999" />
+                <path d="M24 38L32 32L40 38" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        )
+    },
+    {
+        title: "ERP",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="26" y="16" width="12" height="12" rx="2" stroke="#ea2b4f" strokeWidth="1.5" />
+                <rect x="16" y="36" width="12" height="12" rx="2" stroke="#999" strokeWidth="1.5" />
+                <rect x="36" y="36" width="12" height="12" rx="2" stroke="#999" strokeWidth="1.5" />
+                <path d="M32 28V32M32 32H22V36M32 32H42V36" stroke="#999" strokeWidth="1.5" />
+            </svg>
+        )
+    },
+    {
+        title: "SaaS",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M42 36H20C15 36 12 32 12 27C12 22 15 19 19 19C21 12 29 10 34 15C38 14 42 17 43 21C47 22 49 26 48 30C48 34 46 36 42 36Z" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M28 36L28 48M36 36L36 48" stroke="#999" strokeWidth="1.5" />
+                <path d="M24 48H40" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="32" cy="44" r="2" fill="#ea2b4f" />
+            </svg>
+        )
+    },
+    {
+        title: "Hardware",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="24" height="24" rx="2" stroke="#999" strokeWidth="1.5" />
+                <rect x="25" y="25" width="14" height="14" stroke="#ea2b4f" strokeWidth="1.5" />
+                <path d="M20 28H16M20 36H16M44 28H48M44 36H48" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M28 20V16M36 20V16M28 44V48M36 44V48" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+        )
+    },
+    {
+        title: "Workforce Solutions",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="22" r="6" stroke="#ea2b4f" strokeWidth="1.5" />
+                <path d="M20 42C20 35 25 32 32 32C39 32 44 35 44 42" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="20" cy="26" r="4" stroke="#999" strokeWidth="1.5" />
+                <path d="M12 40C12 35.5 15 33.5 19 33.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="44" cy="26" r="4" stroke="#999" strokeWidth="1.5" />
+                <path d="M52 40C52 35.5 49 33.5 45 33.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+        )
+    },
+    {
+        title: "Offshore Workforce Solutions",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="14" stroke="#999" strokeWidth="1.5" />
+                <path d="M18 32H46M22 24H42M22 40H42" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M38 18C44 22 46 28 43 36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2" />
+            </svg>
+        )
+    },
+    {
         title: "Cyber Security",
         icon: (
             <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -120,17 +126,50 @@ const services: ServiceItem[] = [
         )
     },
     {
-        title: "Artificial Intelligence",
+        title: "IoT",
         icon: (
             <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="22" y="24" width="20" height="16" rx="2" stroke="#999" strokeWidth="1.5" />
-                <circle cx="28" cy="30" r="2" fill="#ea2b4f" />
-                <circle cx="36" cy="30" r="2" fill="#ea2b4f" />
-                <path d="M28 36H36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M32 24V18" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="32" cy="16" r="2" stroke="#999" strokeWidth="1.5" />
-                <path d="M22 32H18M46 32H42" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M26 40V44M38 40V44" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <rect x="32" y="18" width="16" height="12" stroke="#999" strokeWidth="1.5" />
+                <rect x="18" y="22" width="6" height="10" stroke="#999" strokeWidth="1.5" />
+                <path d="M18 20H24V22H18V20ZM18 32H24V34H18V32Z" fill="#999" />
+                <path d="M24 28H32M32 28V30M32 28V26" stroke="#999" strokeWidth="1.5" strokeDasharray="2 2" />
+                <path d="M30 40C32.5 38 37.5 38 40 40" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M27 44C31 41 39 41 43 44" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M34 36C34.5 35 35.5 35 36 36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+        )
+    },
+    {
+        title: "Data Analytics",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 44H48" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M16 16V44" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <rect x="20" y="32" width="6" height="12" fill="#ea2b4f" />
+                <rect x="30" y="24" width="6" height="20" fill="#999" />
+                <rect x="40" y="16" width="6" height="28" fill="#999" />
+                <path d="M23 28L33 20L43 12" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        )
+    },
+    {
+        title: "RFP Response",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 16H36L44 24V48H20V16Z" stroke="#999" strokeWidth="1.5" strokeLinejoin="round" />
+                <path d="M36 16V24H44" stroke="#999" strokeWidth="1.5" strokeLinejoin="round" />
+                <path d="M26 32H38M26 38H34" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+        )
+    },
+    {
+        title: "Providing Key Resume",
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="18" y="12" width="28" height="40" rx="2" stroke="#999" strokeWidth="1.5" />
+                <circle cx="32" cy="24" r="5" stroke="#ea2b4f" strokeWidth="1.5" />
+                <path d="M24 36C24 32 28 30 32 30C36 30 40 32 40 36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M24 42H40M24 46H34" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
             </svg>
         )
     }

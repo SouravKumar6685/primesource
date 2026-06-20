@@ -144,7 +144,7 @@ const TeamSection: React.FC = () => {
                             </h2>
 
                             <a
-                                href="#team"
+                                href="/team"
                                 className="bg-[#3bda5c] text-white font-['Outfit'] font-bold text-xs md:text-sm uppercase tracking-[0.15em] px-8 py-4 hover:bg-[#28b546] hover:scale-105 transition-all duration-300 drop-shadow-lg"
                             >
                                 See Our Team

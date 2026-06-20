@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,44 +16,110 @@ interface Article {
 const articles: Article[] = [
     {
         category: "ARTICLE",
-        title: "Leveraging AI to Accelerate Firmware Unit Testing for C/C++ Microcontrollers",
+        title: "Leveraging AI to Accelerate Firmware Unit Testing",
         author: "By Peter Cornwell",
         date: "February 19, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000&auto=format&fit=crop" // PCB/Circuit board image
+        imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
     },
     {
         category: "INSIGHT",
         title: "The Future of Robotic Process Automation in Manufacturing",
         author: "By Sarah Jenkins",
         date: "January 12, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2000&auto=format&fit=crop" // Robotics image
+        imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop"
     },
     {
         category: "CASE STUDY",
-        title: "Scaling Cloud Infrastructure for Global E-commerce in Record Time",
+        title: "Scaling Cloud Infrastructure for Global E-commerce",
         author: "By Alex Rivera",
         date: "March 05, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2000&auto=format&fit=crop" // Tech/Cloud image
+        imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        category: "RESEARCH",
+        title: "Next-Gen Cyber Security for Connected Devices",
+        author: "By David Cho",
+        date: "March 10, 2026",
+        imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        category: "TRENDS",
+        title: "Optimizing Supply Chains with Quantum Computing",
+        author: "By Elena Rostova",
+        date: "March 12, 2026",
+        imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        category: "INSIGHT",
+        title: "Sustainable Manufacturing Through Smart Grids",
+        author: "By Marcus Thorne",
+        date: "March 15, 2026",
+        imageUrl: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop"
+    },
+    {
+        category: "ANALYSIS",
+        title: "The Evolution of 5G in Industrial IoT",
+        author: "By Priya Patel",
+        date: "March 18, 2026",
+        imageUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop"
     }
 ];
 
-const InsightsSection: React.FC = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const sectionRef = useRef<HTMLElement>(null);
-    const carouselRef = useRef<HTMLDivElement>(null);
-    const cardRef = useRef<HTMLDivElement>(null);
+const gridLayouts = [
+  // Layout 1
+  [
+    "md:col-start-1 md:col-span-1 md:row-start-1 md:row-span-2",
+    "md:col-start-2 md:col-span-3 md:row-start-1 md:row-span-1",
+    "md:col-start-4 md:col-span-1 md:row-start-3 md:row-span-1",
+    "md:col-start-2 md:col-span-1 md:row-start-2 md:row-span-1",
+    "md:col-start-3 md:col-span-2 md:row-start-2 md:row-span-1",
+    "md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-1",
+    "md:col-start-2 md:col-span-2 md:row-start-3 md:row-span-1",
+  ],
+  // Layout 2
+  [
+    "md:col-start-2 md:col-span-2 md:row-start-1 md:row-span-1",
+    "md:col-start-4 md:col-span-1 md:row-start-1 md:row-span-3",
+    "md:col-start-1 md:col-span-1 md:row-start-1 md:row-span-1",
+    "md:col-start-1 md:col-span-1 md:row-start-2 md:row-span-1",
+    "md:col-start-2 md:col-span-1 md:row-start-2 md:row-span-1",
+    "md:col-start-3 md:col-span-1 md:row-start-2 md:row-span-2",
+    "md:col-start-1 md:col-span-2 md:row-start-3 md:row-span-1",
+  ],
+  // Layout 3
+  [
+    "md:col-start-2 md:col-span-1 md:row-start-2 md:row-span-1",
+    "md:col-start-1 md:col-span-2 md:row-start-1 md:row-span-1",
+    "md:col-start-3 md:col-span-1 md:row-start-1 md:row-span-2",
+    "md:col-start-4 md:col-span-1 md:row-start-1 md:row-span-2",
+    "md:col-start-1 md:col-span-1 md:row-start-2 md:row-span-1",
+    "md:col-start-1 md:col-span-1 md:row-start-3 md:row-span-1",
+    "md:col-start-2 md:col-span-3 md:row-start-3 md:row-span-1",
+  ],
+];
 
-    const nextArticle = () => {
-        setCurrentIndex((prev) => (prev + 1) % articles.length);
+const InsightsSection: React.FC = () => {
+    const [currentLayout, setCurrentLayout] = useState(0);
+    const sectionRef = useRef<HTMLElement>(null);
+    const gridRef = useRef<HTMLDivElement>(null);
+
+    const nextLayout = () => {
+        setCurrentLayout((prev) => (prev + 1) % gridLayouts.length);
     };
 
-    const prevArticle = () => {
-        setCurrentIndex((prev) => (prev - 1 + articles.length) % articles.length);
+    const prevLayout = () => {
+        setCurrentLayout((prev) => (prev - 1 + gridLayouts.length) % gridLayouts.length);
     };
 
     useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentLayout(prev => (prev + 1) % gridLayouts.length);
+        }, 15000);
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
         const ctx = gsap.context(() => {
-            // Entrance animation for the entire section
             gsap.fromTo(".insights-header",
                 { opacity: 0, y: 30 },
                 {
@@ -68,7 +135,7 @@ const InsightsSection: React.FC = () => {
                 }
             );
 
-            gsap.fromTo(carouselRef.current,
+            gsap.fromTo(gridRef.current,
                 { opacity: 0, scale: 0.95 },
                 {
                     opacity: 1,
@@ -87,99 +154,87 @@ const InsightsSection: React.FC = () => {
         return () => ctx.revert();
     }, []);
 
-    // Animation for content change
-    useEffect(() => {
-        gsap.fromTo(cardRef.current,
-            { x: 30, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" }
-        );
-    }, [currentIndex]);
-
-    const currentArticle = articles[currentIndex];
-
     return (
-        <section ref={sectionRef} className="w-full bg-[#f8f9fa] py-24 px-8 md:px-16" data-scroll-section>
+        <section ref={sectionRef} className="w-full bg-[#0a0a0a] py-24 px-8 md:px-16" data-scroll-section>
             <div className="max-w-[1400px] mx-auto w-full">
 
                 {/* Header */}
                 <div className="insights-header flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
-                    <h2 className="font-['Outfit'] font-bold text-4xl md:text-5xl lg:text-6xl text-[#111618]">
+                    <h2 className="font-['Outfit'] font-bold text-4xl md:text-5xl lg:text-6xl text-white">
                         What we think
                     </h2>
-                    <a href="#insights" className="mt-4 md:mt-0 text-[#3bda5c] font-['Outfit'] font-bold text-xs uppercase tracking-[0.15em] hover:opacity-70 transition-opacity flex items-center gap-2">
-                        Explore Our Insights
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                        </svg>
-                    </a>
-                </div>
-
-                {/* Main Carousel Area */}
-                <div ref={carouselRef} className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] overflow-hidden rounded-3xl group">
-
-                    {/* Background Image */}
-                    <div className="absolute inset-0 transition-transform duration-1000 ease-out group-hover:scale-105">
-                        <img
-                            src={currentArticle.imageUrl}
-                            alt={currentArticle.title}
-                            className="w-full h-full object-cover"
-                        />
-                        <div className="absolute inset-0 bg-black/20"></div>
-                    </div>
-
-                    {/* Dark Article Card */}
-                    <div
-                        ref={cardRef}
-                        className="absolute left-0 bottom-0 md:left-8 md:bottom-8 w-full md:w-[450px] lg:w-[500px] bg-[#111618] text-white p-8 md:p-12 z-20 flex flex-col"
-                    >
-                        <span className="font-['Outfit'] text-[0.65rem] md:text-xs uppercase tracking-[0.2em] text-gray-400 mb-6">
-                            {currentArticle.category}
-                        </span>
-
-                        <h3 className="font-['Inter'] font-semibold text-xl md:text-2xl lg:text-3xl leading-[1.3] mb-8">
-                            {currentArticle.title}
-                        </h3>
-
-                        <div className="mb-10 text-gray-400 font-['Inter'] text-sm">
-                            <p className="font-bold text-white mb-1">{currentArticle.author}</p>
-                            <p>{currentArticle.date}</p>
-                        </div>
-
-                        <a
-                            href="#read"
-                            className="inline-block border border-[#3bda5c]/40 text-[#3bda5c] px-6 py-3 font-['Outfit'] font-bold text-[0.6rem] uppercase tracking-[0.2em] hover:text-[#111618] transition-colors duration-500 relative overflow-hidden group/btn self-start"
-                        >
-                            {/* Liquid fill animation from left to right */}
-                            <span className="absolute inset-0 bg-[#3bda5c] -translate-x-full group-hover/btn:translate-x-0 transition-transform duration-500 ease-in-out"></span>
-                            <span className="relative z-10">Read Article</span>
-                        </a>
-                    </div>
-
-                    {/* Navigation Controls */}
-                    <div className="absolute right-8 bottom-8 z-30 flex items-center gap-6">
-                        <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-6 mt-4 md:mt-0">
+                        {/* Navigation Controls */}
+                        <div className="flex items-center gap-2">
                             <button
-                                onClick={prevArticle}
-                                className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                                onClick={prevLayout}
+                                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                                 </svg>
                             </button>
                             <button
-                                onClick={nextArticle}
-                                className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+                                onClick={nextLayout}
+                                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
                             >
-                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                                 </svg>
                             </button>
                         </div>
-                        <div className="font-['Outfit'] text-white text-xs tracking-wider font-medium min-w-[3rem] text-right">
-                            {currentIndex + 1} / {articles.length}
-                        </div>
+                        <a href="#insights" className="text-[#3bda5c] font-['Outfit'] font-bold text-xs uppercase tracking-[0.15em] hover:opacity-70 transition-opacity flex items-center gap-2">
+                            Explore Our Insights
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
                     </div>
+                </div>
 
+                {/* Animated Grid Area */}
+                <div 
+                    ref={gridRef} 
+                    className="grid grid-cols-1 md:grid-cols-4 auto-rows-[250px] md:grid-rows-3 gap-4 w-full h-auto min-h-[600px] md:h-[700px] lg:h-[800px]"
+                >
+                    {articles.map((article, index) => (
+                        <motion.div
+                            layout
+                            key={index}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{
+                                layout: { type: "spring", stiffness: 60, damping: 14 },
+                                opacity: { duration: 0.5 }
+                            }}
+                            className={`relative overflow-hidden rounded-3xl group cursor-pointer col-span-1 row-span-1 ${gridLayouts[currentLayout][index]}`}
+                        >
+                            <img
+                                src={article.imageUrl}
+                                alt={article.title}
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
+                            />
+                            {/* Gradient Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#111618] via-[#111618]/50 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            
+                            {/* Content */}
+                            <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                                <span className="font-['Outfit'] text-[0.65rem] uppercase tracking-[0.2em] text-[#3bda5c] mb-3">
+                                    {article.category}
+                                </span>
+                                <h3 className="font-['Inter'] font-semibold text-white leading-[1.2] text-xl md:text-2xl lg:text-3xl line-clamp-3 mb-2">
+                                    {article.title}
+                                </h3>
+                                {/* Hover reveal Read Article */}
+                                <div className="mt-2 md:mt-4 flex items-center gap-2 text-white font-['Outfit'] text-xs font-bold uppercase tracking-widest opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                                    <span>Read Article</span>
+                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
 
             </div>

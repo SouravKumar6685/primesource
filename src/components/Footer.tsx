@@ -72,13 +72,14 @@ const Footer: React.FC = () => {
     const mainLinks = [
         { name: "Services", id: "services" },
         { name: "Insights", id: "insights" },
+        { name: "Blog", id: "/blog", isInternal: true },
         { name: "Work", id: "work" },
         { name: "About", id: "about" },
-        { name: "Team", id: "team" },
         { name: "Careers", id: "footer" }
     ];
 
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string, isInternal?: boolean) => {
+        if (isInternal) return;
         e.preventDefault();
         if (location.pathname === '/') {
             const element = document.getElementById(id);
@@ -123,8 +124,8 @@ const Footer: React.FC = () => {
                         {mainLinks.map((link, idx) => (
                             <Link
                                 key={idx}
-                                to={`/#${link.id}`}
-                                onClick={(e) => handleNavClick(e, link.id)}
+                                to={link.isInternal ? link.id : `/#${link.id}`}
+                                onClick={(e) => handleNavClick(e, link.id, link.isInternal)}
                                 className="font-['Outfit'] font-bold text-sm uppercase tracking-[0.15em] hover:text-[#3bda5c] transition-colors"
                             >
                                 {link.name}

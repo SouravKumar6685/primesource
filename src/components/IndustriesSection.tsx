@@ -13,14 +13,14 @@ const industries: Industry[] = [
     {
         category: "Technology",
         clients: [
-            ["FACEBOOK", "MICROSOFT", "T-MOBILE"],
-            ["GOOGLE"]
+            ["UFT Ai", "MICROSOFT"],
+            ["Icent IQ"]
         ]
     },
     {
         category: "Consumer",
         clients: [
-            ["POINT DEFIANCE ZOO", "NIKE", "MOD PIZZA"],
+            ["POINT DEFIANCE ZOO"],
             ["CONTINENTAL MILLS"]
         ]
     },
@@ -50,6 +50,26 @@ const industries: Industry[] = [
         clients: [
             ["MOSS ADAMS"],
             ["PLAYNETWORK"]
+        ]
+    },
+    {
+        category: "Healthcare",
+        clients: [
+            ["MAYO CLINIC", "CLEVELAND CLINIC"],
+            ["UNITEDHEALTH"]
+        ]
+    },
+    {
+        category: "Finance",
+        clients: [
+            ["Penny Coin"]
+        ]
+    },
+    {
+        category: "Retail",
+        clients: [
+            ["WALMART", "TARGET"],
+            ["BEST BUY"]
         ]
     }
 ];

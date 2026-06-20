@@ -5,16 +5,19 @@ const Navbar: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const navLinks = [
-        { name: 'Services', id: 'services' },
+        { name: 'Services', id: '/services', isRoute: true, openInNewTab: true },
         { name: 'Insights', id: 'insights' },
-        { name: 'Resources', id: 'insights' }, // Pointing to insights for now or a dedicated section
+        { name: 'Resources', id: 'insights' },
         { name: 'Industries', id: 'industries' },
-        { name: 'Work', id: 'work' },
-        { name: 'About', id: 'about' },
-        { name: 'Careers', id: 'footer' }
+        { name: 'Team', id: '/team', isRoute: true },
+        { name: 'About', id: '/about', isRoute: true },
+        { name: 'Careers', id: '/careers', isRoute: true }
     ];
 
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
+    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string, isRoute?: boolean) => {
+        if (isRoute) {
+            return; // let standard link navigation happen
+        }
         e.preventDefault();
         if (location.pathname === '/') {
             const element = document.getElementById(id);
@@ -56,33 +59,44 @@ const Navbar: React.FC = () => {
             </Link>
 
             {/* Navigation Links */}
-            <div className="hidden lg:flex items-center gap-10 text-[13px] font-semibold tracking-wide">
+            <div className="hidden lg:flex items-center gap-10 text-[13px] font-semibold tracking-wide text-white">
                 {navLinks.map((link) => (
                     <div key={link.name} className="relative group">
-                        <a
-                            href={`#${link.id}`}
-                            onClick={(e) => handleNavClick(e, link.id)}
-                            className="hover:text-gray-300 transition-colors uppercase py-2"
-                        >
-                            {link.name}
-                        </a>
+                        {link.isRoute ? (
+                            <Link
+                                to={link.id}
+                                target={link.openInNewTab ? "_blank" : undefined}
+                                rel={link.openInNewTab ? "noopener noreferrer" : undefined}
+                                className="hover:text-gray-300 transition-colors uppercase py-2 block"
+                            >
+                                {link.name}
+                            </Link>
+                        ) : (
+                            <a
+                                href={`#${link.id}`}
+                                onClick={(e) => handleNavClick(e, link.id)}
+                                className="hover:text-gray-300 transition-colors uppercase py-2"
+                            >
+                                {link.name}
+                            </a>
+                        )}
 
                         {/* Resources Dropdown */}
                         {link.name === 'Resources' && (
                             <div className="absolute top-full left-0 mt-2 w-48 bg-[#111618] border border-white/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                                 <div className="py-2">
-                                    <button
-                                        onClick={(e) => handleNavClick(e, 'insights')}
-                                        className="w-full text-left px-6 py-3 hover:bg-white/5 transition-colors uppercase text-[11px] tracking-widest text-gray-300 hover:text-white"
+                                    <Link
+                                        to="/blog"
+                                        className="block w-full text-left px-6 py-3 hover:bg-white/5 transition-colors uppercase text-[11px] tracking-widest text-gray-300 hover:text-white"
                                     >
                                         Blog
-                                    </button>
-                                    <button
-                                        onClick={(e) => handleNavClick(e, 'work')}
-                                        className="w-full text-left px-6 py-3 hover:bg-white/5 transition-colors uppercase text-[11px] tracking-widest text-gray-300 hover:text-white"
+                                    </Link>
+                                    <Link
+                                        to="/case-studies"
+                                        className="block w-full text-left px-6 py-3 hover:bg-white/5 transition-colors uppercase text-[11px] tracking-widest text-gray-300 hover:text-white"
                                     >
                                         Case Studies
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         )}

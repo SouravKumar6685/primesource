@@ -11,6 +11,7 @@ import IndustriesSection from './IndustriesSection';
 import FeaturedWork from './FeaturedWork';
 import ContactCTA from './ContactCTA';
 import Footer from './Footer';
+import SEO from './SEO';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -103,6 +104,7 @@ const Home: React.FC = () => {
 
     return (
         <main data-scroll-container className="bg-[#111618]">
+            <SEO />
             <section id="top" className="relative w-full h-screen overflow-hidden flex items-end pb-24 px-8 md:px-16" data-scroll-section>
 
                 {/* Background Videos (Stacked) */}
@@ -124,17 +126,21 @@ const Home: React.FC = () => {
                 </div>
 
                 {/* Hero Content */}
+                {/* Hero Content */}
                 <div ref={textRef} className="relative z-20 w-full max-w-5xl" data-scroll data-scroll-speed="1.5">
                     <h1 className="text-white font-['Outfit'] font-bold text-6xl md:text-8xl leading-[1.1] tracking-tight">
                         Innovation <br /> as a Service
                     </h1>
                     <div className="mt-8 flex items-center gap-6">
-                        <button className="text-white font-['Inter'] uppercase text-sm tracking-wider font-semibold hover:opacity-70 transition-opacity flex items-center gap-2">
+                        <a
+                            href="/services"
+                            className="text-white font-['Inter'] uppercase text-sm tracking-wider font-semibold hover:opacity-70 transition-opacity flex items-center gap-2"
+                        >
                             View Services
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
-                        </button>
+                        </a>
                     </div>
                 </div>
 

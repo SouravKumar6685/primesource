@@ -149,7 +149,7 @@ const Approach: React.FC = () => {
                     </h2>
 
                     <a
-                        href="#services"
+                        href="/services"
                         className="inline-block border border-[#3bda5c] text-[#3bda5c] px-10 py-4 font-['Outfit'] font-bold text-xs uppercase tracking-[0.2em] hover:text-[#111618] transition-colors duration-500 relative overflow-hidden group"
                     >
                         {/* Liquid fill animation from left to right */}

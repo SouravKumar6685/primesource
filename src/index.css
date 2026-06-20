@@ -17,6 +17,15 @@ body {
   overflow-x: hidden;
 }
 
+/* Hide scrollbar globally */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Locomotive scroll base styles */
 html.has-scroll-smooth {
   overflow: hidden;

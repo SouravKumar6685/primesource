@@ -4,56 +4,34 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const allCapabilities = [
-    "3D Modeling & Animation", "AI Agent Development", "AI Software Development", "AI Strategy", "AI/Machine Learning",
-    "AR Development", "Android Development", "Angular Apps", "Application Design", "Autonomous Mobile Robots",
-    "Brand & Visual Design", "Brand Strategy", "Cloud Architecture", "Commercials", "Competitive Analysis",
-    "Computer Vision", "Content Management Systems (CMS)", "Custom Robotics", "Custom Software Development",
-    "Customer Experience", "Customer Experience Research", "Dashboard Design", "Data & Analytics", "Data Engineering",
-    "Design Thinking Strategy", "Dev-Ops", "Digital Transformation", "Documentary Short Films", "Educational Videos",
-    "Electrical Engineering", "Enterprise Systems", "Explainer Videos", "Firmware Engineering", "Generative AI",
-    "Hybrid Mobile Apps", "Industrial Design", "Innovation Sprints", "Innovation Strategy", "Innovation as a Service",
-    "IoT Product Development", "LabVIEW Services", "Machine Learning", "Manufacturing Automation", "Mechanical Engineering",
-    "Media Assets", "Microservices", "Mobile App Development", "Mobile Strategy", "Motion Design", "Product Design",
-    "Product Development", "Product Innovation Consulting", "Product Strategy", "Progressive Web Apps", "RF Engineering",
-    "Rapid Prototyping", "React Apps", "Research & Development", "Robotic Software Development", "Robotic Systems Integration",
-    "Robotics Engineering", "Software Architecture", "Strategy Leadership Summits", "Systems Design", "Technology Architecture",
-    "Test Automation", "UI Animations", "UX Audits", "UX/UI Design", "Usability Testing", "User Research & Testing",
-    "VR Development", "Video Production", "Visual Effects (VFX)", "Web App Development", "Website Design", "Website Development",
-    "WordPress Development", "XR Development", "iOS Development"
-];
-
 // Mapping of categories to the capabilities that belong to them
 const categoryMap: { [key: string]: string[] } = {
     "STRATEGY": [
-        "Brand Strategy", "Competitive Analysis", "Customer Experience", "Customer Experience Research",
-        "Data & Analytics", "Design Thinking Strategy", "Digital Transformation", "Innovation Sprints",
-        "Innovation Strategy", "Innovation as a Service", "Mobile Strategy", "Product Innovation Consulting",
-        "Product Strategy", "Strategy Leadership Summits", "Technology Architecture"
+        "AI Strategy", "Brand Strategy", "Cloud Architecture", "Competitive Analysis", "Digital Transformation",
+        "Offshore Workforce Solutions", "Product Strategy", "Providing Key Resume", "RFP Response",
+        "Technology Architecture", "Workforce Solutions"
     ],
     "DESIGN": [
-        "3D Modeling & Animation", "Application Design", "Brand & Visual Design", "Dashboard Design",
-        "Industrial Design", "Motion Design", "Product Design", "Systems Design", "UI Animations",
-        "UX Audits", "UX/UI Design", "Usability Testing", "User Research & Testing", "Website Design"
+        "Application Design", "Dashboard Design", "Product Design", "Systems Design", "UX/UI Design", "Website Design"
     ],
     "SOFTWARE": [
-        "AI Agent Development", "AI Software Development", "Android Development", "Angular Apps",
-        "Cloud Architecture", "Content Management Systems (CMS)", "Custom Software Development",
-        "Dev-Ops", "Enterprise Systems", "Hybrid Mobile Apps", "Microservices", "Mobile App Development",
-        "Progressive Web Apps", "React Apps", "Robotic Software Development", "Software Architecture",
-        "Test Automation", "Web App Development", "Website Development", "WordPress Development", "iOS Development"
+        "Android Development", "Cloud", "Content Management Systems (CMS)", "Custom Software Development",
+        "Cyber Security", "Dev-Ops", "ERP", "Enterprise Systems", "Hybrid Mobile Apps", "Microservices",
+        "Mobile App Development", "React Apps", "SaaS", "Software Architecture", "Test Automation",
+        "Web App Development", "Web Development", "Website Development", "iOS Development"
     ],
     "HARDWARE": [
-        "Autonomous Mobile Robots", "Custom Robotics", "Electrical Engineering", "Firmware Engineering",
-        "IoT Product Development", "LabVIEW Services", "Manufacturing Automation", "Mechanical Engineering",
-        "RF Engineering", "Rapid Prototyping", "Robotic Systems Integration", "Robotics Engineering"
+        "Hardware", "IoT", "IoT Product Development", "Manufacturing Automation", "Robotic Software Development",
+        "Robotic Systems Integration", "Robotics Engineering"
     ],
     "AI/ML": [
-        "AI Agent Development", "AI Software Development", "AI Strategy", "AI/Machine Learning",
-        "Computer Vision", "Data & Analytics", "Data Engineering", "Generative AI", "Machine Learning"
+        "AI Agent Development", "AI Software Development", "AI Strategy", "AI/ML", "Computer Vision",
+        "Data Analytics", "Data Engineering", "Generative AI", "Machine Learning"
     ]
 };
 
+// Auto-generate the full list of capabilities, sorted alphabetically
+const allCapabilities = Array.from(new Set(Object.values(categoryMap).flat())).sort();
 const categories = Object.keys(categoryMap);
 
 const Capabilities: React.FC = () => {

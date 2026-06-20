@@ -4,8 +4,18 @@ import LocomotiveScroll from 'locomotive-scroll';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import WorkDetail from './components/WorkDetail';
+import Blog from './components/Blog';
+import BlogDetail from './components/BlogDetail';
+import Dashboard from './components/admin/Dashboard';
+import AuthGuard from './components/admin/AuthGuard';
+import CaseStudies from './components/CaseStudies';
+import CaseStudyDetail from './components/CaseStudyDetail';
+import Careers from './components/Careers';
+import CareerDetail from './components/CareerDetail';
 import ScrollToTop from './components/ScrollToTop';
+import ServicesPage from './components/ServicesPage';
+import TeamPage from './components/TeamPage';
+import AboutPage from './components/AboutPage';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -50,8 +60,23 @@ function App() {
         <div className="transition-wrapper">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/work" element={<Home />} />
-            <Route path="/work/:slug" element={<WorkDetail />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/team" element={<TeamPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/careers/:id" element={<CareerDetail />} />
+            <Route
+              path="/admin"
+              element={
+                <AuthGuard>
+                  <Dashboard />
+                </AuthGuard>
+              }
+            />
           </Routes>
         </div>
       </div>
