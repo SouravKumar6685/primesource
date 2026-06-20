@@ -100,6 +100,7 @@ const ServicesPage: React.FC = () => {
 
             {/* Slide-in Drawer */}
             <div
+                data-lenis-prevent
                 className={`fixed top-0 right-0 h-full w-full md:w-[40%] bg-[#111618] border-l border-white/10 z-50 transform transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] ${selectedService ? 'translate-x-0' : 'translate-x-full'} overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]`}
             >
                 {selectedService && (
