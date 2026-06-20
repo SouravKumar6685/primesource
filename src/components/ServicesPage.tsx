@@ -66,7 +66,7 @@ const ServicesPage: React.FC = () => {
                             <div className="absolute inset-0 bg-gradient-to-br from-[#ea2b4f]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                             <div className="relative z-10 transition-transform duration-500 group-hover:-translate-y-1">
-                                {React.cloneElement(service.icon as React.ReactElement, {
+                                {React.cloneElement(service.icon as React.ReactElement<any>, {
                                     className: "w-16 h-16 [&>path]:stroke-white [&>rect]:stroke-white [&>circle]:stroke-white",
                                     fill: "none"
                                 })}
