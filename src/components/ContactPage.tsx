@@ -9,7 +9,7 @@ const ContactPage: React.FC = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        
+
         const ctx = gsap.context(() => {
             gsap.fromTo(".contact-reveal",
                 { opacity: 0, y: 40 },
@@ -28,7 +28,7 @@ const ContactPage: React.FC = () => {
             </Helmet>
 
             <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-                
+
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
                     {/* Left side: Information */}
                     <div className="contact-reveal flex flex-col justify-center">
@@ -42,14 +42,10 @@ const ContactPage: React.FC = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mt-auto">
                             <div>
                                 <h3 className="font-['Outfit'] font-bold text-xl mb-4">India</h3>
-                                <p className="text-gray-400 text-sm mb-2">123 Innovation Drive<br/>Tech Park, Bangalore</p>
-                                <a href="tel:+919876543210" className="text-[#3bda5c] hover:opacity-80 transition-opacity">+91 9876543210</a>
+                                <p className="text-gray-400 text-sm mb-2">123 Innovation Drive<br />Tech Park, Bangalore</p>
+                                <a href="tel:+919700200594" className="text-[#3bda5c] hover:opacity-80 transition-opacity">+91 9700200594</a>
                             </div>
-                            <div>
-                                <h3 className="font-['Outfit'] font-bold text-xl mb-4">United States</h3>
-                                <p className="text-gray-400 text-sm mb-2">456 Startup Way<br/>Silicon Valley, CA</p>
-                                <a href="tel:+11234567890" className="text-[#3bda5c] hover:opacity-80 transition-opacity">+1 1234567890</a>
-                            </div>
+
                         </div>
                     </div>
 
@@ -64,7 +60,7 @@ const ContactPage: React.FC = () => {
                                 </div>
                                 <h3 className="font-['Outfit'] font-bold text-3xl mb-4">Message Sent!</h3>
                                 <p className="text-gray-400">We've received your inquiry and will get back to you shortly.</p>
-                                <button 
+                                <button
                                     onClick={() => window.location.reload()}
                                     className="mt-8 text-[#3bda5c] hover:underline uppercase text-sm tracking-widest font-bold"
                                 >
@@ -75,8 +71,8 @@ const ContactPage: React.FC = () => {
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 <div className="space-y-2">
                                     <label className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Full Name</label>
-                                    <input 
-                                        type="text" 
+                                    <input
+                                        type="text"
                                         name="name"
                                         required
                                         className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl p-4 text-white focus:border-[#3bda5c] outline-none transition-colors"
@@ -84,12 +80,12 @@ const ContactPage: React.FC = () => {
                                     />
                                     <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-xs mt-1" />
                                 </div>
-                                
+
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <label className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Email Address</label>
-                                        <input 
-                                            type="email" 
+                                        <input
+                                            type="email"
                                             name="email"
                                             required
                                             className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl p-4 text-white focus:border-[#3bda5c] outline-none transition-colors"
@@ -99,8 +95,8 @@ const ContactPage: React.FC = () => {
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Company</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             name="company"
                                             className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl p-4 text-white focus:border-[#3bda5c] outline-none transition-colors"
                                             placeholder="Acme Corp"
@@ -111,7 +107,7 @@ const ContactPage: React.FC = () => {
 
                                 <div className="space-y-2">
                                     <label className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">How can we help?</label>
-                                    <textarea 
+                                    <textarea
                                         name="message"
                                         required
                                         rows={5}
@@ -121,8 +117,8 @@ const ContactPage: React.FC = () => {
                                     <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs mt-1" />
                                 </div>
 
-                                <button 
-                                    type="submit" 
+                                <button
+                                    type="submit"
                                     disabled={state.submitting}
                                     className="w-full bg-[#3bda5c] text-[#111618] py-4 rounded-xl font-['Outfit'] font-bold uppercase tracking-widest text-xs hover:bg-[#3bda5c]/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                 >

@@ -146,14 +146,10 @@ const Footer: React.FC = () => {
                                 <h5 className="font-['Outfit'] font-bold text-sm mb-4">{city}</h5>
                                 {city === "India" && (
                                     <a href="tel:4252013713" className="text-[#3bda5c] font-['Inter'] text-xs hover:opacity-70 transition-opacity">
-                                        +91 9876543210
+                                        +91 9700200594
                                     </a>
                                 )}
-                                {city === "United States" && (
-                                    <a href="tel:4252013713" className="text-[#3bda5c] font-['Inter'] text-xs hover:opacity-70 transition-opacity">
-                                        +1 1234567890
-                                    </a>
-                                )}
+
                             </div>
                         ))}
                     </div>

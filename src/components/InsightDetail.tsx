@@ -15,7 +15,10 @@ const InsightDetail: React.FC = () => {
             try {
                 // If the user uses the ID as the slug, getBySlug might fail if it expects a string slug. 
                 // We'll try getBySlug, and if we add a getById later we could fallback.
-                const data = await api.insights.getBySlug(slug);
+                let data = await api.insights.getBySlug(slug);
+                if (!data) {
+                    data = await api.insights.getById(slug);
+                }
                 setInsight(data);
             } catch (error) {
                 console.error("Error fetching insight detail:", error);
@@ -76,7 +79,7 @@ const InsightDetail: React.FC = () => {
             <div className="min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] text-white px-8">
                 <h1 className="font-['Outfit'] font-bold text-4xl mb-8 text-center tracking-tighter">Insight Not Found</h1>
                 <Link to="/insights" className="text-[#3bda5c] font-['Inter'] font-semibold text-sm underline underline-offset-4 hover:opacity-70 transition-opacity">
-                    Return to Insights â†—
+                    Return to Insights &rarr;
                 </Link>
             </div>
         );
@@ -96,7 +99,7 @@ const InsightDetail: React.FC = () => {
                 <div className="flex-1 p-6 md:p-12 lg:p-16 pt-24 md:pt-32 lg:pt-32 flex flex-col justify-center h-full overflow-hidden bg-[#111618] relative">
 
                     <div className="flex justify-between items-start mb-12 lg:mb-0 lg:absolute lg:top-24 lg:left-16 lg:right-16 z-30">
-                        <Link to="/insights" className="font-semibold text-sm hover:opacity-60 transition-opacity text-gray-400">â† Back to Insights</Link>
+                        <Link to="/insights" className="font-semibold text-sm hover:opacity-60 transition-opacity text-gray-400">&larr; Back to Insights</Link>
                     </div>
 
                     <div className="relative w-full h-[60vh] md:h-[80vh] lg:h-[70vh] flex items-center justify-center -mt-10">
@@ -107,7 +110,7 @@ const InsightDetail: React.FC = () => {
 
                     <div className="font-['Outfit'] font-bold text-xs tracking-[0.15em] uppercase text-gray-400 mt-8 lg:absolute lg:bottom-12 lg:left-16 z-30 flex items-center gap-4">
                         <span className="text-[#3bda5c]">{categoryName}</span>
-                        <span>â€¢</span>
+                        <span>&bull;</span>
                         <span>{insight.date}</span>
                     </div>
                 </div>

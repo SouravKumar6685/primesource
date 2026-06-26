@@ -184,6 +184,14 @@ export const api = {
             }
             return data as Insight;
         },
+        async getById(id: string): Promise<Insight | null> {
+            const { data, error } = await supabase.from('insights').select('*').eq('id', id).single();
+            if (error) {
+                if (error.code === 'PGRST116' || error.code === '22P02') return null;
+                throw new Error(error.message);
+            }
+            return data as Insight;
+        },
         async save(insight: Insight): Promise<Insight> {
             const payload = { ...insight };
             if (!payload.id) delete payload.id;
