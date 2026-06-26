@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+﻿import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,7 +13,7 @@ const industries: Industry[] = [
     {
         category: "Technology",
         clients: [
-            ["UFT Ai", "MICROSOFT"],
+            ["UFT Ai"],
             ["Icent IQ"]
         ]
     },
@@ -41,8 +41,7 @@ const industries: Industry[] = [
     {
         category: "Workforce",
         clients: [
-            ["ADECCO", "RANDSTAD", "MANPOWER"],
-            ["EQUITY LABS"]
+            ["SUPER MAX"]
         ]
     },
     {
@@ -91,7 +90,7 @@ const IndustriesSection: React.FC = () => {
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 80%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
@@ -108,7 +107,7 @@ const IndustriesSection: React.FC = () => {
                     scrollTrigger: {
                         trigger: ".industry-grid",
                         start: "top 75%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );

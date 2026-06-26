@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { api } from '../../lib/api';
 import type { Career } from '../../lib/api';
 
@@ -83,7 +83,7 @@ const CareerManager: React.FC = () => {
                 <span>{editingId ? 'Edit Job Posting' : 'Create New Job Posting'}</span>
                 {editingId && (
                     <button onClick={handleCancel} className="text-sm text-gray-400 hover:text-white transition-colors">
-                        Cancel Edit ✕
+                        Cancel Edit âœ•
                     </button>
                 )}
             </h2>
@@ -195,7 +195,7 @@ const CareerManager: React.FC = () => {
                                             {career.is_active ? 'Active' : 'Draft'}
                                         </span>
                                     </div>
-                                    <p className="text-gray-400 text-sm font-['Inter']">{career.department} • {career.location} • {career.type}</p>
+                                    <p className="text-gray-400 text-sm font-['Inter']">{career.department} â€¢ {career.location} â€¢ {career.type}</p>
                                 </div>
                                 <div className="flex gap-3">
                                     <button onClick={() => handleEdit(career)} className="px-4 py-2 border border-white/10 rounded-sm text-xs font-bold uppercase tracking-wider hover:bg-white/5 transition-colors">

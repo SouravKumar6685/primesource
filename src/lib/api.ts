@@ -1,5 +1,4 @@
-// Updated at 2026-03-10
-const API_BASE_URL = 'http://localhost:8000/api/v1';
+import { supabase } from './supabase';
 
 export interface Blog {
     id?: number;
@@ -29,6 +28,30 @@ export interface Career {
     created_at?: string;
 }
 
+export interface Insight {
+    id?: string;
+    category: string;
+    title: string;
+    author: string;
+    date: string;
+    image_url: string;
+    content?: string;
+    slug?: string;
+    created_at?: string;
+}
+
+export interface FeaturedWorkProject {
+    id?: string;
+    category: string;
+    title: string;
+    description?: string | null;
+    image_url: string;
+    is_featured: boolean;
+    slug: string;
+    content?: string;
+    created_at?: string;
+}
+
 export interface CaseStudy {
     id?: number;
     title: string;
@@ -49,90 +72,168 @@ export interface CaseStudy {
 export const api = {
     blogs: {
         async getAll(): Promise<Blog[]> {
-            const response = await fetch(`${API_BASE_URL}/blogs/`);
-            if (!response.ok) throw new Error('Failed to fetch blogs');
-            return response.json();
+            const { data, error } = await supabase.from('blogs').select('*').order('id', { ascending: false });
+            if (error) throw new Error(error.message);
+            return data as Blog[];
         },
         async getBySlug(slug: string): Promise<Blog | null> {
-            const response = await fetch(`${API_BASE_URL}/blogs/`);
-            if (!response.ok) throw new Error('Failed to fetch blogs');
-            const blogs: Blog[] = await response.json();
-            return blogs.find((b: Blog) => b.slug === slug) || null;
+            const { data, error } = await supabase.from('blogs').select('*').eq('slug', slug).single();
+            if (error) {
+                if (error.code === 'PGRST116') return null; // Not found
+                throw new Error(error.message);
+            }
+            return data as Blog;
         },
         async save(blog: Blog): Promise<Blog> {
-            const method = blog.id ? 'PUT' : 'POST';
-            const url = blog.id ? `${API_BASE_URL}/blogs/${blog.id}` : `${API_BASE_URL}/blogs/`;
-            const response = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(blog)
-            });
-            if (!response.ok) throw new Error('Failed to save blog');
-            return response.json();
+            // Remove id if it's undefined to let Supabase generate it
+            const payload = { ...blog };
+            if (!payload.id) delete payload.id;
+            
+            if (blog.id) {
+                const { data, error } = await supabase.from('blogs').update(payload).eq('id', blog.id).select().single();
+                if (error) throw new Error(error.message);
+                return data as Blog;
+            } else {
+                const { data, error } = await supabase.from('blogs').insert(payload).select().single();
+                if (error) throw new Error(error.message);
+                return data as Blog;
+            }
         },
         async delete(id: number): Promise<void> {
-            const response = await fetch(`${API_BASE_URL}/blogs/${id}`, { method: 'DELETE' });
-            if (!response.ok) throw new Error('Failed to delete blog');
+            const { error } = await supabase.from('blogs').delete().eq('id', id);
+            if (error) throw new Error(error.message);
         }
     },
     caseStudies: {
         async getAll(): Promise<CaseStudy[]> {
-            const response = await fetch(`${API_BASE_URL}/case-studies/`);
-            if (!response.ok) throw new Error('Failed to fetch case studies');
-            return response.json();
+            const { data, error } = await supabase.from('case_studies').select('*').order('id', { ascending: false });
+            if (error) throw new Error(error.message);
+            return data as CaseStudy[];
         },
         async getBySlug(slug: string): Promise<CaseStudy | null> {
-            const response = await fetch(`${API_BASE_URL}/case-studies/by-slug/${slug}`);
-            if (!response.ok) {
-                if (response.status === 404) return null;
-                throw new Error('Failed to fetch case study');
+            const { data, error } = await supabase.from('case_studies').select('*').eq('slug', slug).single();
+            if (error) {
+                if (error.code === 'PGRST116') return null;
+                throw new Error(error.message);
             }
-            return response.json();
+            return data as CaseStudy;
         },
         async save(cs: CaseStudy): Promise<CaseStudy> {
-            const method = cs.id ? 'PUT' : 'POST';
-            const url = cs.id ? `${API_BASE_URL}/case-studies/${cs.id}` : `${API_BASE_URL}/case-studies/`;
-            const response = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(cs)
-            });
-            if (!response.ok) throw new Error('Failed to save case study');
-            return response.json();
+            const payload = { ...cs };
+            if (!payload.id) delete payload.id;
+
+            if (cs.id) {
+                const { data, error } = await supabase.from('case_studies').update(payload).eq('id', cs.id).select().single();
+                if (error) throw new Error(error.message);
+                return data as CaseStudy;
+            } else {
+                const { data, error } = await supabase.from('case_studies').insert(payload).select().single();
+                if (error) throw new Error(error.message);
+                return data as CaseStudy;
+            }
         },
         async delete(id: number): Promise<void> {
-            const response = await fetch(`${API_BASE_URL}/case-studies/${id}`, { method: 'DELETE' });
-            if (!response.ok) throw new Error('Failed to delete case study');
+            const { error } = await supabase.from('case_studies').delete().eq('id', id);
+            if (error) throw new Error(error.message);
         }
     },
     careers: {
         async getAll(): Promise<Career[]> {
-            const response = await fetch(`${API_BASE_URL}/careers/`);
-            if (!response.ok) throw new Error('Failed to fetch careers');
-            return response.json();
+            const { data, error } = await supabase.from('careers').select('*').order('id', { ascending: false });
+            if (error) throw new Error(error.message);
+            return data as Career[];
         },
         async getById(id: number): Promise<Career | null> {
-            const response = await fetch(`${API_BASE_URL}/careers/${id}`);
-            if (!response.ok) {
-                if (response.status === 404) return null;
-                throw new Error('Failed to fetch career');
+            const { data, error } = await supabase.from('careers').select('*').eq('id', id).single();
+            if (error) {
+                if (error.code === 'PGRST116') return null;
+                throw new Error(error.message);
             }
-            return response.json();
+            return data as Career;
         },
         async save(career: Career): Promise<Career> {
-            const method = career.id ? 'PUT' : 'POST';
-            const url = career.id ? `${API_BASE_URL}/careers/${career.id}` : `${API_BASE_URL}/careers/`;
-            const response = await fetch(url, {
-                method,
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(career)
-            });
-            if (!response.ok) throw new Error('Failed to save career');
-            return response.json();
+            const payload = { ...career };
+            if (!payload.id) delete payload.id;
+
+            if (career.id) {
+                const { data, error } = await supabase.from('careers').update(payload).eq('id', career.id).select().single();
+                if (error) throw new Error(error.message);
+                return data as Career;
+            } else {
+                const { data, error } = await supabase.from('careers').insert(payload).select().single();
+                if (error) throw new Error(error.message);
+                return data as Career;
+            }
         },
         async delete(id: number): Promise<void> {
-            const response = await fetch(`${API_BASE_URL}/careers/${id}`, { method: 'DELETE' });
-            if (!response.ok) throw new Error('Failed to delete career');
+            const { error } = await supabase.from('careers').delete().eq('id', id);
+            if (error) throw new Error(error.message);
+        }
+    },
+    insights: {
+        async getAll(): Promise<Insight[]> {
+            const { data, error } = await supabase.from('insights').select('*').order('created_at', { ascending: false });
+            if (error) throw new Error(error.message);
+            return data as Insight[];
+        },
+        async getBySlug(slug: string): Promise<Insight | null> {
+            const { data, error } = await supabase.from('insights').select('*').eq('slug', slug).single();
+            if (error) {
+                if (error.code === 'PGRST116') return null;
+                throw new Error(error.message);
+            }
+            return data as Insight;
+        },
+        async save(insight: Insight): Promise<Insight> {
+            const payload = { ...insight };
+            if (!payload.id) delete payload.id;
+
+            if (insight.id) {
+                const { data, error } = await supabase.from('insights').update(payload).eq('id', insight.id).select().single();
+                if (error) throw new Error(error.message);
+                return data as Insight;
+            } else {
+                const { data, error } = await supabase.from('insights').insert(payload).select().single();
+                if (error) throw new Error(error.message);
+                return data as Insight;
+            }
+        },
+        async delete(id: string): Promise<void> {
+            const { error } = await supabase.from('insights').delete().eq('id', id);
+            if (error) throw new Error(error.message);
+        }
+    },
+    featuredWork: {
+        async getAll(): Promise<FeaturedWorkProject[]> {
+            const { data, error } = await supabase.from('featured_work').select('*').order('created_at', { ascending: false });
+            if (error) throw new Error(error.message);
+            return data as FeaturedWorkProject[];
+        },
+        async getBySlug(slug: string): Promise<FeaturedWorkProject | null> {
+            const { data, error } = await supabase.from('featured_work').select('*').eq('slug', slug).single();
+            if (error) {
+                if (error.code === 'PGRST116') return null;
+                throw new Error(error.message);
+            }
+            return data as FeaturedWorkProject;
+        },
+        async save(fw: FeaturedWorkProject): Promise<FeaturedWorkProject> {
+            const payload = { ...fw };
+            if (!payload.id) delete payload.id;
+
+            if (fw.id) {
+                const { data, error } = await supabase.from('featured_work').update(payload).eq('id', fw.id).select().single();
+                if (error) throw new Error(error.message);
+                return data as FeaturedWorkProject;
+            } else {
+                const { data, error } = await supabase.from('featured_work').insert(payload).select().single();
+                if (error) throw new Error(error.message);
+                return data as FeaturedWorkProject;
+            }
+        },
+        async delete(id: string): Promise<void> {
+            const { error } = await supabase.from('featured_work').delete().eq('id', id);
+            if (error) throw new Error(error.message);
         }
     }
 };

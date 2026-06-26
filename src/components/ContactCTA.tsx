@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from 'react';
+﻿import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -22,7 +23,7 @@ const ContactCTA: React.FC = () => {
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 70%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
@@ -40,7 +41,7 @@ const ContactCTA: React.FC = () => {
                         scrollTrigger: {
                             trigger: imagesRef.current,
                             start: "top 85%",
-                            toggleActions: "play reverse play reverse"
+                            toggleActions: "play none none reverse"
                         }
                     }
                 );
@@ -65,15 +66,15 @@ const ContactCTA: React.FC = () => {
                         Have a project?
                     </h2>
 
-                    <a
-                        href="mailto:hello@primesource.com"
+                    <Link
+                        to="/contact"
                         className="group relative px-10 py-4 border-2 border-gray-200 rounded-lg overflow-hidden transition-all duration-300 hover:border-[#3bda5c]"
                     >
                         <span className="relative z-10 font-['Outfit'] font-bold text-[#3bda5c] text-sm uppercase tracking-[0.2em] transition-colors duration-300 group-hover:text-white">
                             Contact Us
                         </span>
                         <div className="absolute inset-0 bg-[#3bda5c] transform translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0" />
-                    </a>
+                    </Link>
                 </div>
             </div>
 

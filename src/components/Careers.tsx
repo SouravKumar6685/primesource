@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../lib/api';
 import type { Career } from '../lib/api';
@@ -58,7 +58,7 @@ const Careers: React.FC = () => {
                         Join the<br />Team.
                     </h1>
                     <p className="font-['Inter'] text-gray-500 max-w-lg text-lg leading-relaxed">
-                        We're always looking for talented individuals passionate about building the future — with purpose, precision, and real impact.
+                        We're always looking for talented individuals passionate about building the future â€” with purpose, precision, and real impact.
                     </p>
                 </div>
 
@@ -135,7 +135,7 @@ const Careers: React.FC = () => {
                             disabled={currentPage === 1}
                             className="px-5 py-2.5 border border-gray-200 rounded-full text-sm font-['Outfit'] font-bold uppercase tracking-wider disabled:opacity-30 hover:border-black transition-colors"
                         >
-                            ← Prev
+                            â† Prev
                         </button>
 
                         {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
@@ -156,7 +156,7 @@ const Careers: React.FC = () => {
                             disabled={currentPage === totalPages}
                             className="px-5 py-2.5 border border-gray-200 rounded-full text-sm font-['Outfit'] font-bold uppercase tracking-wider disabled:opacity-30 hover:border-black transition-colors"
                         >
-                            Next →
+                            Next â†’
                         </button>
                     </div>
                 )}

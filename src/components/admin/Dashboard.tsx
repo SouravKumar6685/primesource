@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import BlogManager from './BlogManager';
 import CaseStudyManager from './CaseStudyManager';
 import CareerManager from './CareerManager';
+import InsightsManager from './InsightsManager';
+import FeaturedWorkManager from './FeaturedWorkManager';
+import { supabase } from '../../lib/supabase';
 
 const Dashboard: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'blogs' | 'case_studies' | 'careers'>('blogs');
+    const [activeTab, setActiveTab] = useState<'blogs' | 'case_studies' | 'careers' | 'insights' | 'featured_work'>('blogs');
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+    };
 
     return (
         <main className="min-h-screen pt-32 pb-24 bg-[#0a0a0a] text-white">
@@ -31,9 +38,27 @@ const Dashboard: React.FC = () => {
                         </button>
                         <button
                             onClick={() => setActiveTab('careers')}
-                            className={`px-6 py-2 rounded-full font-['Outfit'] font-bold text-xs uppercase tracking-widest transition-all ${activeTab === 'careers' ? 'bg-[#3bda5c] text-[#111618]' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
+                            className={`px-4 py-2 rounded-full font-['Outfit'] font-bold text-xs uppercase tracking-widest transition-all ${activeTab === 'careers' ? 'bg-[#3bda5c] text-[#111618]' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
                         >
                             Careers
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('insights')}
+                            className={`px-4 py-2 rounded-full font-['Outfit'] font-bold text-xs uppercase tracking-widest transition-all ${activeTab === 'insights' ? 'bg-[#3bda5c] text-[#111618]' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
+                        >
+                            What We Think
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('featured_work')}
+                            className={`px-4 py-2 rounded-full font-['Outfit'] font-bold text-xs uppercase tracking-widest transition-all ${activeTab === 'featured_work' ? 'bg-[#3bda5c] text-[#111618]' : 'bg-white/5 text-gray-400 hover:bg-white/10'}`}
+                        >
+                            Featured Work
+                        </button>
+                        <button
+                            onClick={handleLogout}
+                            className="px-6 py-2 rounded-full font-['Outfit'] font-bold text-xs uppercase tracking-widest transition-all bg-red-500/10 text-red-400 hover:bg-red-500/20 ml-4"
+                        >
+                            Logout
                         </button>
                     </nav>
                 </header>
@@ -42,6 +67,8 @@ const Dashboard: React.FC = () => {
                     {activeTab === 'blogs' && <BlogManager />}
                     {activeTab === 'case_studies' && <CaseStudyManager />}
                     {activeTab === 'careers' && <CareerManager />}
+                    {activeTab === 'insights' && <InsightsManager />}
+                    {activeTab === 'featured_work' && <FeaturedWorkManager />}
                 </div>
 
             </div>

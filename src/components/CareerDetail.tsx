@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../lib/api';
 import type { Career } from '../lib/api';
@@ -76,14 +76,14 @@ const CareerDetail: React.FC = () => {
         return (
             <div className="min-h-screen pt-32 flex flex-col items-center justify-center bg-[#FAFAFA] text-black gap-4">
                 <h1 className="font-['Outfit'] font-bold text-3xl">Role not found</h1>
-                <Link to="/careers" className="text-[#3bda5c] font-bold hover:underline">← Back to Careers</Link>
+                <Link to="/careers" className="text-[#3bda5c] font-bold hover:underline">â† Back to Careers</Link>
             </div>
         );
     }
 
     return (
         <main className="pt-32 pb-24 bg-[#FAFAFA] text-black min-h-screen">
-            <SEO title={career.title} description={`${career.department} · ${career.location} · ${career.type} — Apply now at Prime Source.`} />
+            <SEO title={career.title} description={`${career.department} Â· ${career.location} Â· ${career.type} â€” Apply now at Prime Source.`} />
 
             <div className="max-w-[1100px] mx-auto px-6 md:px-12 lg:px-16">
 
@@ -95,7 +95,7 @@ const CareerDetail: React.FC = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
 
-                    {/* Left — Job Info */}
+                    {/* Left â€” Job Info */}
                     <div className="lg:col-span-2">
                         {/* Header */}
                         <div className="mb-10 pb-10 border-b border-gray-200">
@@ -122,12 +122,12 @@ const CareerDetail: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Right — Apply Form */}
+                    {/* Right â€” Apply Form */}
                     <div className="lg:col-span-1">
                         <div className="bg-white border border-gray-200 rounded-xl p-8 sticky top-32">
                             {submitted ? (
                                 <div className="text-center py-8">
-                                    <div className="text-5xl mb-4">🎉</div>
+                                    <div className="text-5xl mb-4">ðŸŽ‰</div>
                                     <h3 className="font-['Outfit'] font-bold text-xl mb-2">Application Sent!</h3>
                                     <p className="text-gray-500 text-sm font-['Inter']">Thanks for applying. We'll be in touch within 5 business days.</p>
                                 </div>

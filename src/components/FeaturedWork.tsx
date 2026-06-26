@@ -5,53 +5,26 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Project {
-    id: number;
-    category: string;
-    title: string;
-    description?: string;
-    imageUrl: string;
-    isFeatured?: boolean;
-    slug: string;
-}
-
-const projects: Project[] = [
-    {
-        id: 1,
-        slug: "gamifying-ai",
-        category: "Featured Projects",
-        title: "Gamifying AI",
-        description: "We created a first-of-its-kind robotic air hockey table that modernizes a classic arcade game with AI control systems.",
-        imageUrl: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=2000&auto=format&fit=crop",
-        isFeatured: true
-    },
-    {
-        id: 2,
-        slug: "team-nation",
-        category: "MOONSHOT SPORTS",
-        title: "Team Nation learning platform",
-        imageUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop"
-    },
-    {
-        id: 3,
-        slug: "cobot-remote",
-        category: "FRESH LABS",
-        title: "Cobot Remote",
-        imageUrl: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop"
-    },
-    {
-        id: 4,
-        slug: "touchscreen-ui",
-        category: "MIDDLEBY",
-        title: "Touchscreen UI & Product Unification",
-        imageUrl: "https://images.unsplash.com/photo-1547082299-de196ea013d6?q=80&w=1200&auto=format&fit=crop"
-    }
-];
+import { api } from '../lib/api';
+import type { FeaturedWorkProject } from '../lib/api';
 
 const FeaturedWork: React.FC = () => {
     const sectionRef = useRef<HTMLElement>(null);
     const cursorRef = useRef<HTMLDivElement>(null);
     const [isHovering, setIsHovering] = useState(false);
+    const [projects, setProjects] = useState<FeaturedWorkProject[]>([]);
+
+    useEffect(() => {
+        const fetchProjects = async () => {
+            try {
+                const data = await api.featuredWork.getAll();
+                setProjects(data || []);
+            } catch (error) {
+                console.error("Failed to fetch featured work:", error);
+            }
+        };
+        fetchProjects();
+    }, []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -66,24 +39,7 @@ const FeaturedWork: React.FC = () => {
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 80%",
-                        toggleActions: "play reverse play reverse"
-                    }
-                }
-            );
-
-            // Stagger reveal project cards
-            gsap.fromTo(".work-card",
-                { opacity: 0, y: 50 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    stagger: 0.2,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".work-grid-container",
-                        start: "top 75%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
@@ -108,8 +64,39 @@ const FeaturedWork: React.FC = () => {
         return () => ctx.revert();
     }, []);
 
-    const featuredProject = projects.find(p => p.isFeatured);
-    const secondaryProjects = projects.filter(p => !p.isFeatured);
+    // Animate project cards AFTER they are loaded and rendered
+    useEffect(() => {
+        if (projects.length === 0) return;
+
+        const ctx = gsap.context(() => {
+            // Stagger reveal project cards
+            gsap.fromTo(".work-card",
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.2,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".work-grid-container",
+                        start: "top 75%",
+                        toggleActions: "play none none reverse"
+                    }
+                }
+            );
+        }, sectionRef);
+
+        // Crucial: Refresh all ScrollTriggers after dynamic content loads to fix positions of sections below
+        setTimeout(() => {
+            ScrollTrigger.refresh();
+        }, 100);
+
+        return () => ctx.revert();
+    }, [projects]);
+
+    const featuredProject = projects.find(p => p.is_featured);
+    const secondaryProjects = projects.filter(p => !p.is_featured);
 
     return (
         <section ref={sectionRef} className="w-full bg-white text-[#111618] py-24 px-8 md:px-16 relative overflow-hidden" data-scroll-section>
@@ -165,7 +152,7 @@ const FeaturedWork: React.FC = () => {
                                 {/* Right Image */}
                                 <div className="w-full lg:w-1/2 h-full order-1 lg:order-2 self-stretch overflow-hidden">
                                     <img
-                                        src={featuredProject.imageUrl}
+                                        src={featuredProject.image_url}
                                         alt={featuredProject.title}
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                                     />
@@ -186,7 +173,7 @@ const FeaturedWork: React.FC = () => {
                             >
                                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-8 bg-[#f2f4f5]">
                                     <img
-                                        src={project.imageUrl}
+                                        src={project.image_url}
                                         alt={project.title}
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                                     />

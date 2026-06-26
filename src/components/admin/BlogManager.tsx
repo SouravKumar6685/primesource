@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { api } from '../../lib/api';
 import type { Blog } from '../../lib/api';
 
@@ -165,7 +165,7 @@ const BlogManager: React.FC = () => {
                         <div className="flex items-center justify-between">
                             <h4 className="text-[#3bda5c] font-bold text-sm tracking-widest uppercase">Main Article Content</h4>
                             <div className="text-xs text-gray-400 bg-black/50 px-3 py-1 rounded">
-                                💡 Tip: Use <code className="text-white">#</code> for H1, <code className="text-white">##</code> for H2. Wrap words in <code className="text-white">*</code> to make them <strong className="text-white">bold</strong>.
+                                ðŸ’¡ Tip: Use <code className="text-white">#</code> for H1, <code className="text-white">##</code> for H2. Wrap words in <code className="text-white">*</code> to make them <strong className="text-white">bold</strong>.
                             </div>
                         </div>
                         <textarea
@@ -260,7 +260,7 @@ const BlogManager: React.FC = () => {
                                         />
                                     </div>
                                     <button type="button" onClick={() => handleRemoveRightImage(index)} className="p-2 text-gray-500 hover:text-red-500 transition-colors mt-1" title="Remove Image">
-                                        ✕
+                                        âœ•
                                     </button>
                                 </div>
                             ))}

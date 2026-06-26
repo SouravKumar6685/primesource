@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+﻿import React, { useRef, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -159,7 +159,7 @@ const Footer: React.FC = () => {
                     </div>
 
                     <div className="flex flex-col md:flex-row items-start md:items-center gap-6 text-[10px] md:text-xs text-gray-400 font-['Inter']">
-                        <span>© 2026 Fresh Consulting</span>
+                        <span>Â© 2026 Fresh Consulting</span>
                         <Link to="#" className="hover:text-[#3bda5c] transition-colors">Privacy Policy</Link>
                     </div>
                 </div>

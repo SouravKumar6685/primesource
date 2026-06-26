@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -51,7 +51,7 @@ const Capabilities: React.FC = () => {
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top 80%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
@@ -66,7 +66,7 @@ const Capabilities: React.FC = () => {
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top 60%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );

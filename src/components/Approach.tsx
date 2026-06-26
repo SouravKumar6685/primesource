@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+﻿import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -73,7 +73,7 @@ const Approach: React.FC = () => {
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top 70%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
@@ -90,7 +90,7 @@ const Approach: React.FC = () => {
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top 70%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );

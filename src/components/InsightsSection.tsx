@@ -2,68 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Article {
-    category: string;
-    title: string;
-    author: string;
-    date: string;
-    imageUrl: string;
-}
-
-const articles: Article[] = [
-    {
-        category: "ARTICLE",
-        title: "Leveraging AI to Accelerate Firmware Unit Testing",
-        author: "By Peter Cornwell",
-        date: "February 19, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=800&auto=format&fit=crop"
-    },
-    {
-        category: "INSIGHT",
-        title: "The Future of Robotic Process Automation in Manufacturing",
-        author: "By Sarah Jenkins",
-        date: "January 12, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1200&auto=format&fit=crop"
-    },
-    {
-        category: "CASE STUDY",
-        title: "Scaling Cloud Infrastructure for Global E-commerce",
-        author: "By Alex Rivera",
-        date: "March 05, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop"
-    },
-    {
-        category: "RESEARCH",
-        title: "Next-Gen Cyber Security for Connected Devices",
-        author: "By David Cho",
-        date: "March 10, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=800&auto=format&fit=crop"
-    },
-    {
-        category: "TRENDS",
-        title: "Optimizing Supply Chains with Quantum Computing",
-        author: "By Elena Rostova",
-        date: "March 12, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop"
-    },
-    {
-        category: "INSIGHT",
-        title: "Sustainable Manufacturing Through Smart Grids",
-        author: "By Marcus Thorne",
-        date: "March 15, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop"
-    },
-    {
-        category: "ANALYSIS",
-        title: "The Evolution of 5G in Industrial IoT",
-        author: "By Priya Patel",
-        date: "March 18, 2026",
-        imageUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1200&auto=format&fit=crop"
-    }
-];
+import { api } from '../lib/api';
+import type { Insight } from '../lib/api';
 
 const gridLayouts = [
   // Layout 1
@@ -100,8 +44,21 @@ const gridLayouts = [
 
 const InsightsSection: React.FC = () => {
     const [currentLayout, setCurrentLayout] = useState(0);
+    const [articles, setArticles] = useState<Insight[]>([]);
     const sectionRef = useRef<HTMLElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const fetchInsights = async () => {
+            try {
+                const data = await api.insights.getAll();
+                setArticles(data || []);
+            } catch (error) {
+                console.error("Failed to fetch insights:", error);
+            }
+        };
+        fetchInsights();
+    }, []);
 
     const nextLayout = () => {
         setCurrentLayout((prev) => (prev + 1) % gridLayouts.length);
@@ -130,7 +87,7 @@ const InsightsSection: React.FC = () => {
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 80%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
@@ -145,7 +102,7 @@ const InsightsSection: React.FC = () => {
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 60%",
-                        toggleActions: "play reverse play reverse"
+                        toggleActions: "play none none reverse"
                     }
                 }
             );
@@ -183,12 +140,12 @@ const InsightsSection: React.FC = () => {
                                 </svg>
                             </button>
                         </div>
-                        <a href="#insights" className="text-[#3bda5c] font-['Outfit'] font-bold text-xs uppercase tracking-[0.15em] hover:opacity-70 transition-opacity flex items-center gap-2">
+                        <Link to="/insights" className="text-[#3bda5c] font-['Outfit'] font-bold text-xs uppercase tracking-[0.15em] hover:opacity-70 transition-opacity flex items-center gap-2">
                             Explore Our Insights
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -198,19 +155,19 @@ const InsightsSection: React.FC = () => {
                     className="grid grid-cols-1 md:grid-cols-4 auto-rows-[250px] md:grid-rows-3 gap-4 w-full h-auto min-h-[600px] md:h-[700px] lg:h-[800px]"
                 >
                     {articles.map((article, index) => (
-                        <motion.div
-                            layout
-                            key={index}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{
-                                layout: { type: "spring", stiffness: 60, damping: 14 },
-                                opacity: { duration: 0.5 }
-                            }}
-                            className={`relative overflow-hidden rounded-3xl group cursor-pointer col-span-1 row-span-1 ${gridLayouts[currentLayout][index]}`}
-                        >
+                        <Link to={`/insights/${article.slug || article.id}`} key={article.id || index} className={`relative overflow-hidden rounded-3xl group cursor-pointer col-span-1 row-span-1 block ${gridLayouts[currentLayout]?.[index % gridLayouts[currentLayout].length]}`}>
+                            <motion.div
+                                layout
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{
+                                    layout: { type: "spring", stiffness: 60, damping: 14 },
+                                    opacity: { duration: 0.5 }
+                                }}
+                                className="w-full h-full relative"
+                            >
                             <img
-                                src={article.imageUrl}
+                                src={article.image_url}
                                 alt={article.title}
                                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
                             />
@@ -234,6 +191,7 @@ const InsightsSection: React.FC = () => {
                                 </div>
                             </div>
                         </motion.div>
+                        </Link>
                     ))}
                 </div>
 

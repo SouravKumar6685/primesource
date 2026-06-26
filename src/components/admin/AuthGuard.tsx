@@ -1,29 +1,55 @@
-import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
+import { supabase } from '../../lib/supabase';
+import type { Session } from '@supabase/supabase-js';
 
 interface AuthGuardProps {
     children: React.ReactNode;
 }
 
 const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
-    const [isAuthorized, setIsAuthorized] = useState(false);
+    const [session, setSession] = useState<Session | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    // For absolute simplicity as requested for a local/internal admin panel
-    // Hardcoded for now, but can be moved to env later
-    const ADMIN_PASSWORD = 'admin';
+    useEffect(() => {
+        supabase.auth.getSession().then(({ data: { session } }) => {
+            setSession(session);
+            setLoading(false);
+        });
 
-    const handleSubmit = (e: React.FormEvent) => {
+        const {
+            data: { subscription },
+        } = supabase.auth.onAuthStateChange((_event, session) => {
+            setSession(session);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (password === ADMIN_PASSWORD) {
-            setIsAuthorized(true);
-        } else {
-            setError('Invalid credentials');
-            setPassword('');
+        setError('');
+        const { error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+        });
+
+        if (error) {
+            setError(error.message);
         }
     };
 
-    if (isAuthorized) {
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-[#111618] flex items-center justify-center">
+                <div className="text-[#3bda5c] font-['Outfit'] font-bold">Authenticating...</div>
+            </div>
+        );
+    }
+
+    if (session) {
         return <>{children}</>;
     }
 
@@ -37,10 +63,19 @@ const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2">
+                        <label className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Email</label>
+                        <input
+                            type="email"
+                            autoFocus
+                            className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl p-4 text-white focus:border-[#3bda5c] outline-none transition-colors"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className="space-y-2">
                         <label className="text-[10px] text-gray-500 uppercase tracking-[0.2em] font-bold">Access Key</label>
                         <input
                             type="password"
-                            autoFocus
                             className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl p-4 text-white focus:border-[#3bda5c] outline-none transition-colors"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}

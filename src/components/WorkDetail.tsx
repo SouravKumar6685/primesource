@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import gsap from 'gsap';
 
@@ -18,7 +18,7 @@ const WorkDetail: React.FC = () => {
         <div className="min-h-screen bg-[#111618] text-white pt-32 px-8 md:px-16 leading-relaxed">
             <div className="max-w-4xl mx-auto detail-content">
                 <Link to="/" className="text-[#3bda5c] font-['Outfit'] font-bold text-xs uppercase tracking-widest mb-12 inline-block hover:opacity-70 transition-opacity">
-                    ← Back to Home
+                    â† Back to Home
                 </Link>
                 <h1 className="font-['Outfit'] font-bold text-5xl md:text-7xl mb-8 capitalize">
                     {slug?.replace(/-/g, ' ')}

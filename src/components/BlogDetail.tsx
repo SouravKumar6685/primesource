@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../lib/api';
 import type { Blog as BlogType } from '../lib/api';
@@ -74,7 +74,7 @@ const BlogDetail: React.FC = () => {
             <div className="min-h-screen flex flex-col items-center justify-center bg-[#FAFAFA] text-black px-8">
                 <h1 className="font-['Outfit'] font-bold text-4xl mb-8 text-center tracking-tighter">Article Not Found</h1>
                 <Link to="/blog" className="text-black font-['Inter'] font-semibold text-sm underline underline-offset-4 hover:opacity-70 transition-opacity">
-                    Return to Source ↗
+                    Return to Source â†—
                 </Link>
             </div>
         );
