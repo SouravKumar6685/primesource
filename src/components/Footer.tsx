@@ -141,7 +141,7 @@ const Footer: React.FC = () => {
             <div className="bg-white text-[#111618] py-16">
                 <div className="max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-12 w-full lg:w-auto">
-                        {["India", "United States"].map((city, idx) => (
+                        {["India"].map((city, idx) => (
                             <div key={idx}>
                                 <h5 className="font-['Outfit'] font-bold text-sm mb-4">{city}</h5>
                                 {city === "India" && (
