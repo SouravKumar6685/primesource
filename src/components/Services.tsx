@@ -52,7 +52,7 @@ export const services: ServiceItem[] = [
     },
     {
         title: "Cloud",
-
+        emoji: "â˜ ",
         description: "Scale effortlessly with secure, highly-available cloud architectures and migrations that reduce infrastructure costs, increase agility, and enable global reach.",
         subtitle: "Cloud Native & Migration",
         whatItDoes: "We architect, build, and maintain cloud environments on AWS, Azure, and Google Cloud. From seamless migrations to cloud-native application development, we ensure your infrastructure is scalable, secure, and cost-efficient. Our approach includes infrastructureâ€‘asâ€‘code, continuous delivery, and FinOps practices, allowing you to focus on innovation while we handle the heavy lifting.",
