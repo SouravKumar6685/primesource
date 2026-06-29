@@ -70,12 +70,12 @@ const Footer: React.FC = () => {
     ];
 
     const mainLinks = [
-        { name: "Services", id: "services" },
-        { name: "Insights", id: "insights" },
+        { name: "Services", id: "/services" },
+        { name: "Insights", id: "/insights" },
         { name: "Blog", id: "/blog", isInternal: true },
-        { name: "Work", id: "work" },
-        { name: "About", id: "about" },
-        { name: "Careers", id: "footer" }
+        { name: "Work", id: "/work" },
+        { name: "About", id: "/about" },
+        { name: "Careers", id: "/careers" }
     ];
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string, isInternal?: boolean) => {

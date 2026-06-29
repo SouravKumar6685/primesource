@@ -1,6 +1,7 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useNavigate } from 'react-router-dom';
 import { services } from './Services';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -8,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const ServicesPage: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -89,6 +91,20 @@ const ServicesPage: React.FC = () => {
                             </div>
                         </div>
                     ))}
+                </div>
+
+                <div className="mt-20 flex justify-center">
+                    <button 
+                        onClick={() => navigate('/faq')}
+                        className="bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-full px-8 py-4 font-semibold font-['Inter'] transition-all duration-300 flex items-center gap-3 group"
+                    >
+                        <div className="w-8 h-8 rounded-full bg-[#ea2b4f]/20 flex items-center justify-center group-hover:bg-[#ea2b4f]/30 transition-colors">
+                            <svg className="w-4 h-4 text-[#ea2b4f]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        Frequently Asked Questions
+                    </button>
                 </div>
             </div>
 

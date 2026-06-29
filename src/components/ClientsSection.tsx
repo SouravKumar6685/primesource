@@ -7,39 +7,32 @@ gsap.registerPlugin(ScrollTrigger);
 // Using precise placeholder SVGs/Images for the logos shown in the reference
 const clients = [
     {
-        name: 'CBRE',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/CBRE_Group_logo.svg/2560px-CBRE_Group_logo.svg.png'
+        name: 'UFT AI',
+        logoUrl: 'https://unitedforcetech.com/assets/Logo_2-lpCSpyZ-.jpeg'
     },
     {
-        name: 'Facebook',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Facebook_Logo_%282019%29.svg/2560px-Facebook_Logo_%282019%29.svg.png'
+        name: 'Penny Coin',
+        logoUrl: 'https://plain-apac-prod-public.komododecks.com/202606/29/VgDfxcoyg4MrGHKAFS1s/image.png'
     },
     {
-        name: 'Google',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png'
+        name: 'Inncent IQ',
+        logoUrl: 'https://plain-apac-prod-public.komododecks.com/202606/29/pVIVguOlU1wHmGdmNdM7/image.png'
     },
     {
-        name: 'Microsoft',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2560px-Microsoft_logo_%282012%29.svg.png'
+        name: 'Synerax',
+        logoUrl: 'https://plain-apac-prod-public.komododecks.com/202606/29/JTtmP4G0SJN9OUpBKnCg/image.png'
     },
     {
-        name: 'MOD',
+        name: 'Lenstar',
         // Using a similar shield placeholder as seen in the image
-        logoUrl: 'https://cdn.worldvectorlogo.com/logos/mod-pizza-1.svg'
+        logoUrl: 'https://plain-apac-prod-public.komododecks.com/202606/29/3i6o34vSE0FeM7zo7G6v/image.png'
     },
     {
-        name: 'RM Sotheby\'s',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/RM_Sotheby%27s_logo.svg/2560px-RM_Sotheby%27s_logo.svg.png'
-    },
-    {
-        name: 'NEC',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/NEC_logo.svg/2560px-NEC_logo.svg.png'
-    },
-    {
-        name: 'Nike',
-        logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/2560px-Logo_NIKE.svg.png'
+        name: 'Lumina Workforce',
+        logoUrl: 'https://plain-apac-prod-public.komododecks.com/202606/29/EmDTBtAQoLw8Lh0D4Zjj/image.png'
     }
 ];
+
 
 const ClientsSection: React.FC = () => {
     const containerRef = useRef<HTMLElement>(null);
@@ -103,8 +96,8 @@ const ClientsSection: React.FC = () => {
                         className="font-['Inter'] font-light text-[2rem] md:text-[2.5rem] lg:text-[2.8rem] leading-[1.3] text-gray-800"
                     >
                         Collaboration is critical for shared success. It's our<br className="hidden md:block" />
-                        guiding principle and standard in serving the world's<br className="hidden md:block" />
-                        greatest companies.
+                        guiding principle and standard in serving<br className="hidden md:block" />
+                        some of the world's leading companies.
                     </p>
                 </div>
 

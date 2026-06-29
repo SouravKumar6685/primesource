@@ -21,6 +21,7 @@ import InsightsPage from './components/InsightsPage';
 import InsightDetail from './components/InsightDetail';
 import FeaturedWorkPage from './components/FeaturedWorkPage';
 import FeaturedWorkDetail from './components/FeaturedWorkDetail';
+import FAQPage from './components/FAQPage';
 
 function App() {
   const location = useLocation();
@@ -73,6 +74,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/faq" element={<FAQPage />} />
             <Route path="/team" element={<TeamPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />

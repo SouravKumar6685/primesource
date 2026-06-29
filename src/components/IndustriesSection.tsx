@@ -54,7 +54,7 @@ const industries: Industry[] = [
     {
         category: "Healthcare",
         clients: [
-            ["MAYO CLINIC", "CLEVELAND CLINIC"],
+            ["MAYO CLINIC",],
             ["UNITEDHEALTH"]
         ]
     },
@@ -67,7 +67,7 @@ const industries: Industry[] = [
     {
         category: "Retail",
         clients: [
-            ["WALMART", "TARGET"],
+            ["TARGET"],
             ["BEST BUY"]
         ]
     }

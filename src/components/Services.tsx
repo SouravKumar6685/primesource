@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+﻿import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
 export interface ServiceItem {
@@ -15,6 +15,105 @@ export interface ServiceItem {
 }
 
 export const services: ServiceItem[] = [
+    {
+        title: "Workforce Solutions",
+        emoji: "ðŸ‘¥",
+        description: "Empower your teams with the right talent and organizational strategies to drive innovation, delivery excellence, and business growth.",
+        subtitle: "Staff Augmentation",
+        whatItDoes: "We help you scale your engineering and IT teams quickly. Whether you need specialized contractors for a short-term project or full-time hires to grow your core team, our talent network delivers pre-vetted professionals who integrate seamlessly with your culture. We handle sourcing, screening, and onboarding so you can stay focused on your roadmap.",
+        features: [
+            { title: "Vetted Engineering Talent", description: "We rigorously test candidates to ensure they meet your high technical standards." },
+            { title: "Flexible Engagement", description: "Choose from contract, contract-to-hire, or direct placement models." },
+            { title: "Dedicated Teams", description: "Build entire squads (frontend, backend, QA, DevOps) that work as an extension of your company." },
+            { title: "Fast Onboarding", description: "Our candidates are ready to contribute from day one with minimal ramp-up." },
+            { title: "Retention Strategies", description: "We help you build a positive work environment to keep top talent engaged." }
+        ],
+        impacts: [
+            { title: "Speed to Hire", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
+            { title: "Scalability", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
+            { title: "Specialized Skills", icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" },
+            { title: "Reduced Overhead", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+            { title: "Cultural Fit", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" }
+        ],
+        technologies: ["Technical Screening Platforms", "Assessment Tools", "HRIS Systems", "Collaboration Tools (Slack, Teams)"],
+        useCases: ["Project-Based Staffing", "Skill Gap Filling", "Peak Load Support", "Product Development Teams", "QA/DevOps Augmentation"],
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="22" r="6" stroke="#ea2b4f" strokeWidth="1.5" />
+                <path d="M20 42C20 35 25 32 32 32C39 32 44 35 44 42" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="20" cy="26" r="4" stroke="#999" strokeWidth="1.5" />
+                <path d="M12 40C12 35.5 15 33.5 19 33.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="44" cy="26" r="4" stroke="#999" strokeWidth="1.5" />
+                <path d="M52 40C52 35.5 49 33.5 45 33.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+        )
+    },
+
+    {
+        title: "Offshore Workforce Solutions",
+        emoji: "ðŸŒ",
+        description: "Access a global talent pool to accelerate development while optimizing costs, with fully managed offshore development centers and 24/7 delivery.",
+        subtitle: "Global Engineering Centers",
+        whatItDoes: "We build and manage high-performing offshore development centers. You get the benefit of lower operational costs without sacrificing quality, thanks to our rigorous oversight, established processes, and deep cultural integration. We handle recruitment, payroll, facilities, and legal compliance so you can focus on product development.",
+        features: [
+            { title: "Follow-The-Sun Development", description: "24/7 continuous development cycles across multiple time zones." },
+            { title: "Managed Offices", description: "We handle the real estate, HR, and legal compliance so you can focus on building." },
+            { title: "Dedicated Teams", description: "Hand-picked engineers who work exclusively on your projects with full alignment." },
+            { title: "Knowledge Transfer", description: "Systematic documentation and handover processes ensure business continuity." },
+            { title: "Cultural Integration", description: "We foster a collaborative culture that bridges geographical gaps." }
+        ],
+        impacts: [
+            { title: "Cost Efficiency", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+            { title: "Rapid Scaling", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
+            { title: "Global Talent Pool", icon: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" },
+            { title: "Round-the-clock Delivery", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
+            { title: "Reduced Time-to-Market", icon: "M13 10V3L4 14h7v7l9-11h-7z" }
+        ],
+        technologies: ["Distributed Teams", "Agile/Scrum", "DevSecOps", "Collaboration Tools", "Time Zone Overlap Strategies"],
+        useCases: ["Offshore Development Centers", "24/7 Support Teams", "Cost-Optimized R&D", "Nearshore/Offshore Hybrid Models"],
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="14" stroke="#999" strokeWidth="1.5" />
+                <path d="M18 32H46M22 24H42M22 40H42" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M38 18C44 22 46 28 43 36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2" />
+            </svg>
+        )
+    },
+
+
+    {
+        title: "Web Development",
+        emoji: "ðŸ’»",
+        description: "Craft visually stunning and highly responsive web applications that engage your users and drive conversions, with exceptional performance and accessibility.",
+        subtitle: "Frontend & Fullstack Development",
+        whatItDoes: "We build fast, secure, and intuitive web applications using the latest modern frameworks (React, Next.js, Vue). From responsive corporate sites to complex interactive web apps, we deliver pixel-perfect code with exceptional user experiences and performance. We also integrate headless CMS, implement PWAs, and ensure your site is SEOâ€‘optimized out of the box.",
+        features: [
+            { title: "Modern Frameworks", description: "We utilize React, Next.js, and TypeScript to ensure scalable and maintainable codebases." },
+            { title: "Performance Optimized", description: "Our web apps score incredibly high on Lighthouse for speed, accessibility, and SEO." },
+            { title: "Progressive Web Apps (PWA)", description: "Build offline-capable, app-like experiences for mobile and desktop users." },
+            { title: "Headless CMS Integration", description: "Connect with Contentful, Sanity, or Strapi for flexible content management." },
+            { title: "Eâ€‘commerce & Custom Solutions", description: "Develop tailored online stores, portals, and dashboards with secure payment gateways." }
+        ],
+        impacts: [
+            { title: "High Conversion", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
+            { title: "Mobile Friendly", icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" },
+            { title: "Fast Load Times", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
+            { title: "Secure Apps", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
+            { title: "Seamless User Experience", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" }
+        ],
+        technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Node.js", "GraphQL"],
+        useCases: ["E-commerce Platforms", "Enterprise Portals", "Marketing Websites", "Dashboard Applications", "Mobile-First Web Apps"],
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 22H48C50 22 52 24 52 26V42C52 44 50 46 48 46H16C14 46 12 44 12 42V26C12 24 14 22 16 22Z" stroke="#999" strokeWidth="1.5" />
+                <path d="M12 28H52" stroke="#999" strokeWidth="1.5" />
+                <circle cx="18" cy="25" r="1.5" fill="#ea2b4f" />
+                <circle cx="23" cy="25" r="1.5" fill="#999" />
+                <circle cx="28" cy="25" r="1.5" fill="#999" />
+                <path d="M24 38L32 32L40 38" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        )
+    },
     {
         title: "AI/ML",
         emoji: "ðŸ¤–",
@@ -115,38 +214,71 @@ export const services: ServiceItem[] = [
         )
     },
     {
-        title: "Web Development",
-        emoji: "ðŸ’»",
-        description: "Craft visually stunning and highly responsive web applications that engage your users and drive conversions, with exceptional performance and accessibility.",
-        subtitle: "Frontend & Fullstack Development",
-        whatItDoes: "We build fast, secure, and intuitive web applications using the latest modern frameworks (React, Next.js, Vue). From responsive corporate sites to complex interactive web apps, we deliver pixel-perfect code with exceptional user experiences and performance. We also integrate headless CMS, implement PWAs, and ensure your site is SEOâ€‘optimized out of the box.",
+        title: "SaaS",
+        emoji: "ðŸš€",
+        description: "End-to-end development of Software as a Service products from MVP to enterprise scale, with built-in monetization, user management, and analytics.",
+        subtitle: "Product Development",
+        whatItDoes: "We help founders and enterprises build subscription-based SaaS platforms. We handle the multi-tenant architecture, billing integration, secure authentication, and scalable backend services so you can focus on your core product features. We also provide user analytics, API design, and continuous delivery pipelines.",
         features: [
-            { title: "Modern Frameworks", description: "We utilize React, Next.js, and TypeScript to ensure scalable and maintainable codebases." },
-            { title: "Performance Optimized", description: "Our web apps score incredibly high on Lighthouse for speed, accessibility, and SEO." },
-            { title: "Progressive Web Apps (PWA)", description: "Build offline-capable, app-like experiences for mobile and desktop users." },
-            { title: "Headless CMS Integration", description: "Connect with Contentful, Sanity, or Strapi for flexible content management." },
-            { title: "Eâ€‘commerce & Custom Solutions", description: "Develop tailored online stores, portals, and dashboards with secure payment gateways." }
+            { title: "Multi-Tenancy", description: "Secure, scalable architectures designed specifically for multiple clients." },
+            { title: "Subscription Billing", description: "Integrated payment gateways (Stripe, Paddle), metered billing, and flexible subscription management." },
+            { title: "User Analytics", description: "Track user engagement, feature adoption, and churn with built-in analytics." },
+            { title: "API-First Design", description: "Expose robust APIs for your customers and partners to integrate with your platform." },
+            { title: "Compliance & Security", description: "Implement SOC2, GDPR, and HIPAA compliance from day one." }
         ],
         impacts: [
-            { title: "High Conversion", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
-            { title: "Mobile Friendly", icon: "M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" },
-            { title: "Fast Load Times", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
-            { title: "Secure Apps", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
-            { title: "Seamless User Experience", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" }
+            { title: "Recurring Revenue", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+            { title: "Global Reach", icon: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" },
+            { title: "Rapid Iteration", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
+            { title: "High Retention", icon: "M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" },
+            { title: "Scalable Growth", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" }
         ],
-        technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Node.js", "GraphQL"],
-        useCases: ["E-commerce Platforms", "Enterprise Portals", "Marketing Websites", "Dashboard Applications", "Mobile-First Web Apps"],
+        technologies: ["Node.js", "Python", "React", "Next.js", "Stripe", "Auth0", "AWS", "PostgreSQL"],
+        useCases: ["B2B SaaS Platforms", "B2C Subscription Services", "Marketplaces", "Freemium Products", "Enterprise SaaS"],
         icon: (
             <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 22H48C50 22 52 24 52 26V42C52 44 50 46 48 46H16C14 46 12 44 12 42V26C12 24 14 22 16 22Z" stroke="#999" strokeWidth="1.5" />
-                <path d="M12 28H52" stroke="#999" strokeWidth="1.5" />
-                <circle cx="18" cy="25" r="1.5" fill="#ea2b4f" />
-                <circle cx="23" cy="25" r="1.5" fill="#999" />
-                <circle cx="28" cy="25" r="1.5" fill="#999" />
-                <path d="M24 38L32 32L40 38" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M42 36H20C15 36 12 32 12 27C12 22 15 19 19 19C21 12 29 10 34 15C38 14 42 17 43 21C47 22 49 26 48 30C48 34 46 36 42 36Z" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M28 36L28 48M36 36L36 48" stroke="#999" strokeWidth="1.5" />
+                <path d="M24 48H40" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
+                <circle cx="32" cy="44" r="2" fill="#ea2b4f" />
             </svg>
         )
     },
+
+    {
+        title: "Data Analytics",
+        emoji: "ðŸ“ˆ",
+        description: "Translate complex datasets into clear, actionable business insights that drive strategic decisions and uncover growth opportunities.",
+        subtitle: "Business Intelligence",
+        whatItDoes: "We build intuitive dashboards and reports using tools like Power BI, Tableau, and custom web interfaces. Transform your raw data into visual narratives that drive strategic decision-making. We also implement self-service analytics, predictive models, and data storytelling to empower every stakeholder.",
+        features: [
+            { title: "Custom Dashboards", description: "Interactive visualizations tailored to the KPIs that matter most to your business." },
+            { title: "Advanced Reporting", description: "Automated, scheduled reports delivered straight to stakeholders." },
+            { title: "Predictive Analytics", description: "Leverage statistical models to forecast future trends and outcomes." },
+            { title: "Data Storytelling", description: "Translate insights into compelling narratives for executive presentations." },
+            { title: "Self-Service BI", description: "Empower your teams to explore data independently with intuitive tools." }
+        ],
+        impacts: [
+            { title: "Better Decisions", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
+            { title: "Clear Visibility", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" },
+            { title: "Growth Tracking", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
+            { title: "Competitive Edge", icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
+            { title: "Operational Efficiency", icon: "M13 10V3L4 14h7v7l9-11h-7z" }
+        ],
+        technologies: ["Power BI", "Tableau", "Looker", "SQL", "Python (Pandas, Matplotlib)", "R", "D3.js"],
+        useCases: ["Sales Performance Analysis", "Customer Segmentation", "Financial Reporting", "Operational Dashboards", "Marketing Attribution"],
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 44H48" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M16 16V44" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <rect x="20" y="32" width="6" height="12" fill="#ea2b4f" />
+                <rect x="30" y="24" width="6" height="20" fill="#999" />
+                <rect x="40" y="16" width="6" height="28" fill="#999" />
+                <path d="M23 28L33 20L43 12" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+        )
+    },
+
     {
         title: "ERP",
         emoji: "ðŸ¢",
@@ -178,37 +310,7 @@ export const services: ServiceItem[] = [
             </svg>
         )
     },
-    {
-        title: "SaaS",
-        emoji: "ðŸš€",
-        description: "End-to-end development of Software as a Service products from MVP to enterprise scale, with built-in monetization, user management, and analytics.",
-        subtitle: "Product Development",
-        whatItDoes: "We help founders and enterprises build subscription-based SaaS platforms. We handle the multi-tenant architecture, billing integration, secure authentication, and scalable backend services so you can focus on your core product features. We also provide user analytics, API design, and continuous delivery pipelines.",
-        features: [
-            { title: "Multi-Tenancy", description: "Secure, scalable architectures designed specifically for multiple clients." },
-            { title: "Subscription Billing", description: "Integrated payment gateways (Stripe, Paddle), metered billing, and flexible subscription management." },
-            { title: "User Analytics", description: "Track user engagement, feature adoption, and churn with built-in analytics." },
-            { title: "API-First Design", description: "Expose robust APIs for your customers and partners to integrate with your platform." },
-            { title: "Compliance & Security", description: "Implement SOC2, GDPR, and HIPAA compliance from day one." }
-        ],
-        impacts: [
-            { title: "Recurring Revenue", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-            { title: "Global Reach", icon: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" },
-            { title: "Rapid Iteration", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
-            { title: "High Retention", icon: "M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" },
-            { title: "Scalable Growth", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" }
-        ],
-        technologies: ["Node.js", "Python", "React", "Next.js", "Stripe", "Auth0", "AWS", "PostgreSQL"],
-        useCases: ["B2B SaaS Platforms", "B2C Subscription Services", "Marketplaces", "Freemium Products", "Enterprise SaaS"],
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M42 36H20C15 36 12 32 12 27C12 22 15 19 19 19C21 12 29 10 34 15C38 14 42 17 43 21C47 22 49 26 48 30C48 34 46 36 42 36Z" stroke="#999" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M28 36L28 48M36 36L36 48" stroke="#999" strokeWidth="1.5" />
-                <path d="M24 48H40" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="32" cy="44" r="2" fill="#ea2b4f" />
-            </svg>
-        )
-    },
+
     {
         title: "Hardware",
         emoji: "âš¡",
@@ -246,69 +348,8 @@ export const services: ServiceItem[] = [
             </svg>
         )
     },
-    {
-        title: "Workforce Solutions",
-        emoji: "ðŸ‘¥",
-        description: "Empower your teams with the right talent and organizational strategies to drive innovation, delivery excellence, and business growth.",
-        subtitle: "Staff Augmentation",
-        whatItDoes: "We help you scale your engineering and IT teams quickly. Whether you need specialized contractors for a short-term project or full-time hires to grow your core team, our talent network delivers pre-vetted professionals who integrate seamlessly with your culture. We handle sourcing, screening, and onboarding so you can stay focused on your roadmap.",
-        features: [
-            { title: "Vetted Engineering Talent", description: "We rigorously test candidates to ensure they meet your high technical standards." },
-            { title: "Flexible Engagement", description: "Choose from contract, contract-to-hire, or direct placement models." },
-            { title: "Dedicated Teams", description: "Build entire squads (frontend, backend, QA, DevOps) that work as an extension of your company." },
-            { title: "Fast Onboarding", description: "Our candidates are ready to contribute from day one with minimal ramp-up." },
-            { title: "Retention Strategies", description: "We help you build a positive work environment to keep top talent engaged." }
-        ],
-        impacts: [
-            { title: "Speed to Hire", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-            { title: "Scalability", icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" },
-            { title: "Specialized Skills", icon: "M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" },
-            { title: "Reduced Overhead", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-            { title: "Cultural Fit", icon: "M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" }
-        ],
-        technologies: ["Technical Screening Platforms", "Assessment Tools", "HRIS Systems", "Collaboration Tools (Slack, Teams)"],
-        useCases: ["Project-Based Staffing", "Skill Gap Filling", "Peak Load Support", "Product Development Teams", "QA/DevOps Augmentation"],
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="32" cy="22" r="6" stroke="#ea2b4f" strokeWidth="1.5" />
-                <path d="M20 42C20 35 25 32 32 32C39 32 44 35 44 42" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="20" cy="26" r="4" stroke="#999" strokeWidth="1.5" />
-                <path d="M12 40C12 35.5 15 33.5 19 33.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="44" cy="26" r="4" stroke="#999" strokeWidth="1.5" />
-                <path d="M52 40C52 35.5 49 33.5 45 33.5" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-            </svg>
-        )
-    },
-    {
-        title: "Offshore Workforce Solutions",
-        emoji: "ðŸŒ",
-        description: "Access a global talent pool to accelerate development while optimizing costs, with fully managed offshore development centers and 24/7 delivery.",
-        subtitle: "Global Engineering Centers",
-        whatItDoes: "We build and manage high-performing offshore development centers. You get the benefit of lower operational costs without sacrificing quality, thanks to our rigorous oversight, established processes, and deep cultural integration. We handle recruitment, payroll, facilities, and legal compliance so you can focus on product development.",
-        features: [
-            { title: "Follow-The-Sun Development", description: "24/7 continuous development cycles across multiple time zones." },
-            { title: "Managed Offices", description: "We handle the real estate, HR, and legal compliance so you can focus on building." },
-            { title: "Dedicated Teams", description: "Hand-picked engineers who work exclusively on your projects with full alignment." },
-            { title: "Knowledge Transfer", description: "Systematic documentation and handover processes ensure business continuity." },
-            { title: "Cultural Integration", description: "We foster a collaborative culture that bridges geographical gaps." }
-        ],
-        impacts: [
-            { title: "Cost Efficiency", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
-            { title: "Rapid Scaling", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
-            { title: "Global Talent Pool", icon: "M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" },
-            { title: "Round-the-clock Delivery", icon: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" },
-            { title: "Reduced Time-to-Market", icon: "M13 10V3L4 14h7v7l9-11h-7z" }
-        ],
-        technologies: ["Distributed Teams", "Agile/Scrum", "DevSecOps", "Collaboration Tools", "Time Zone Overlap Strategies"],
-        useCases: ["Offshore Development Centers", "24/7 Support Teams", "Cost-Optimized R&D", "Nearshore/Offshore Hybrid Models"],
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="32" cy="32" r="14" stroke="#999" strokeWidth="1.5" />
-                <path d="M18 32H46M22 24H42M22 40H42" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M38 18C44 22 46 28 43 36" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2 2" />
-            </svg>
-        )
-    },
+
+
     {
         title: "Cyber Security",
         emoji: "ðŸ›¡ï¸",
@@ -373,39 +414,7 @@ export const services: ServiceItem[] = [
             </svg>
         )
     },
-    {
-        title: "Data Analytics",
-        emoji: "ðŸ“ˆ",
-        description: "Translate complex datasets into clear, actionable business insights that drive strategic decisions and uncover growth opportunities.",
-        subtitle: "Business Intelligence",
-        whatItDoes: "We build intuitive dashboards and reports using tools like Power BI, Tableau, and custom web interfaces. Transform your raw data into visual narratives that drive strategic decision-making. We also implement self-service analytics, predictive models, and data storytelling to empower every stakeholder.",
-        features: [
-            { title: "Custom Dashboards", description: "Interactive visualizations tailored to the KPIs that matter most to your business." },
-            { title: "Advanced Reporting", description: "Automated, scheduled reports delivered straight to stakeholders." },
-            { title: "Predictive Analytics", description: "Leverage statistical models to forecast future trends and outcomes." },
-            { title: "Data Storytelling", description: "Translate insights into compelling narratives for executive presentations." },
-            { title: "Self-Service BI", description: "Empower your teams to explore data independently with intuitive tools." }
-        ],
-        impacts: [
-            { title: "Better Decisions", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
-            { title: "Clear Visibility", icon: "M15 12a3 3 0 11-6 0 3 3 0 016 0z" },
-            { title: "Growth Tracking", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
-            { title: "Competitive Edge", icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
-            { title: "Operational Efficiency", icon: "M13 10V3L4 14h7v7l9-11h-7z" }
-        ],
-        technologies: ["Power BI", "Tableau", "Looker", "SQL", "Python (Pandas, Matplotlib)", "R", "D3.js"],
-        useCases: ["Sales Performance Analysis", "Customer Segmentation", "Financial Reporting", "Operational Dashboards", "Marketing Attribution"],
-        icon: (
-            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16 44H48" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <path d="M16 16V44" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
-                <rect x="20" y="32" width="6" height="12" fill="#ea2b4f" />
-                <rect x="30" y="24" width="6" height="20" fill="#999" />
-                <rect x="40" y="16" width="6" height="28" fill="#999" />
-                <path d="M23 28L33 20L43 12" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-        )
-    },
+
     {
         title: "RFP Response",
         emoji: "ðŸ“",
