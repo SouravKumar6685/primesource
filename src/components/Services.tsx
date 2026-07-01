@@ -48,6 +48,40 @@ export const services: ServiceItem[] = [
             </svg>
         )
     },
+    {
+        title: "Digital Marketing",
+        emoji: "📈",
+        description: "Accelerate your online presence and scale revenue with data-driven performance marketing, hyper-targeted SEO campaigns, and high-converting brand strategies.",
+        subtitle: "Growth & Performance Marketing",
+        whatItDoes: "We architect and execute full-funnel digital marketing strategies that turn casual traffic into loyal customers. From search engine optimization (SEO) and paid advertising (PPC) to content marketing and social media campaigns, we combine creative storytelling with heavy data analytics. We continuously test, iterate, and optimize your marketing spend to maximize ROI and lower your customer acquisition costs (CAC).",
+        features: [
+            { title: "Performance-Driven PPC", description: "Launch highly optimized Google, Meta, and LinkedIn ads designed for immediate lead generation and conversions." },
+            { title: "Advanced SEO & Content Strategy", description: "Dominate organic search rankings with thorough keyword research, technical SEO audits, and high-quality content production." },
+            { title: "Conversion Rate Optimization", description: "Analyze user behavior via heatmaps and A/B testing to turn your existing website traffic into paying clients." },
+            { title: "Social Media & Brand Building", description: "Cultivate an active, engaged community across platforms to build brand equity and organic customer trust." },
+            { title: "Marketing Automation & Nurturing", description: "Build smart email and WhatsApp workflows that capture cold leads and seamlessly guide them through the sales funnel." }
+        ],
+        impacts: [
+            { title: "Higher ROI", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" },
+            { title: "Lower CAC", icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" },
+            { title: "Organic Growth", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
+            { title: "Brand Authority", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
+            { title: "Data Transparency", icon: "M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" }
+        ],
+        technologies: ["Google Ads", "Meta Business Suite", "Google Analytics 4 (GA4)", "SEMrush / Ahrefs", "HubSpot / HubSpot CRM", "Klaviyo / Mailchimp", "Hotjar"],
+        useCases: ["B2B Lead Generation", "E-commerce Sales Scaling", "Brand Awareness Campaigns", "Local SEO Domination", "Inbound Marketing Automation"],
+        icon: (
+            <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 46L26 34L36 40L50 22" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M42 22H50V30" stroke="#ea2b4f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="50" cy="22" r="2" fill="#ea2b4f" />
+                <path d="M10 50H54" stroke="#999" strokeWidth="1.5" strokeLinecap="round" />
+                <path d="M14 50V40" stroke="#999" strokeWidth="1.5" strokeDasharray="2 2" />
+                <path d="M26 50V30" stroke="#999" strokeWidth="1.5" strokeDasharray="2 2" />
+                <path d="M36 50V34" stroke="#999" strokeWidth="1.5" strokeDasharray="2 2" />
+            </svg>
+        )
+    },
 
     {
         title: "Offshore Workforce Solutions",
